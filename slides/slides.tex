@@ -68,6 +68,13 @@
 % change the following line to "ngerman" for German style date and logos
 \selectlanguage{ngerman}
 
+\AtBeginSection[]{%
+	\begin{frame}
+		\tableofcontents[sectionstyle=show/hide,subsectionstyle=hide/show/hide]
+	\end{frame}
+	\addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
+}
+
 %title page
 \begin{frame}
 \titlepage
@@ -78,59 +85,9 @@
 \tableofcontents
 \end{frame}
 
-\section{Section 1}
-\subsection{Subsection 1.1}
-\begin{frame}{Example slide A}
-\begin{itemize}
-\item PCM, Citation: 
-\pause
-\item Bullet point 2
-\item \dots
-\end{itemize}
-\end{frame}
-
-\subsection{Subsection 1.2}
-\begin{frame}{Example slide B}
-\begin{block}{Block 1}
-\begin{itemize}
-\item Bullet point 1
-\pause
-\item Bullet point 2
-\item \dots
-\end{itemize}
-\end{block}
-\end{frame}
-
-\section{Section 2}
-\begin{frame}{Example slide C}
-\begin{exampleblock}{Example 1}
-\begin{itemize}
-\item Bullet point 1
-\pause
-\item Bullet point 2
-\item \dots
-\end{itemize}
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}{Example slide D}
-\begin{alertblock}{Alert 1}
-\begin{itemize}
-\item Bullet point 1
-\pause
-\item Bullet point 2
-\item \dots
-\end{itemize}
-\end{alertblock}
-\end{frame}
-
-\appendix
-\beginbackup
-
-\begin{frame}[allowframebreaks]{Links}
-
-\end{frame}
-
-\backupend
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% ADD OWN SECTIONS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{cpp} % includes cpp.tex
 
 \end{document}
