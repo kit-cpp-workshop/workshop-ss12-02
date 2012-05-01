@@ -1,0 +1,81 @@
+\section{C++}
+
+
+\begin{frame}{Was ist C++?}
+	\begin{block}{Eine standardisierte Programmiersprache}
+		C++
+		\begin{itemize}
+			\item ist eine Programmiersprache (gibt einen Programmablauf vor)
+			\item vereint sowohl high-level- wir auch low-level-Features
+			\item ist sehr hardwarenah
+			\item ist standardisiert (\emph{hier:} ISO/IEC 14882:2003)
+		\end{itemize}
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{Was sagt der Standard hierzu?}
+		C++ is a general purpose programming language based on the C programming language as described in
+		ISO/IEC 9899:1990 Programming languages – C.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Worum geht es bei C++?}
+	von-Neumann-Architektur $\xrightarrow{Abstraktion}$ C++ $\xrightarrow{Implementierung}$ Hardware
+	
+	\begin{itemize}
+		\item C++ wurde explizit für die von-Neumann-Architektur designed
+		\item C++ soll zero-overhead sein (Features, die ich nicht nutze, benötigen weder Speicher noch Laufzeit)
+		\item C++ ist eine Multi-Paradigmen-Sprache mit Betonung der Objektorientierung
+	\end{itemize}
+	
+	\begin{block}{Standard, 1.8}
+		The constructs in a C++ program create, destroy, refer to, access, and manipulate objects.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Wofür nutze ich C++?}
+	foo!
+\end{frame}
+
+\begin{frame}[fragile]{»Dinge«}
+	Das grundlegende Konzept in C++ nennt sich im Standard \enquote{object}. Hinsichtlich Java und Objektorientierung aber missverständlich!
+	Wir nennen es daher »Ding«.
+	
+	\pause
+	
+	\small
+	\begin{block}{Standard, 1.8}
+		Ein »Ding«
+		\begin{itemize}
+			\item ist ein Speicherbereich, aber \emph{keine} Funktion (auch wenn diese Speicher belegt!).
+			\item wird durch eine Definition, den \verb|new|-Ausdruck oder vom Compiler erzeugt.
+			\item hat einen Typen und eine Speicherdauer {\tiny (die die Lebensdauer des dort gespeicherten »Objekts« beeinflusst)}; \emph{kann} einen \emph{Namen} haben.
+			\item hat eine Größe von einem oder mehr Bytes {\tiny (abgesehen von bit-fields)}.
+			\item von »einfachem« {\tiny (POD)} Typ besetzt eine zusammenhängende Menge Bytes.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Speicher}
+	\begin{block}{Standard, 1.7}
+		Die fundamentale Speicher-Einheit im C++ Speichermodell ist das \emph{Byte}. [Es folgt eine sehr abstrakte Definition.]
+		Der Speicher, welcher einem C++ Programm zur Verfügung steht, besteht aus einer oder mehreren Sequenzen von zusammenhängenden Bytes.
+		Jedes Byte hat eine eindeutige Adresse.
+	\end{block}
+	
+	\footnotesize
+	\begin{block}{}
+		\begin{lstlisting}[language=C++]
+			int foo;
+			int bar;
+			double d;
+			double& rd = d;
+			
+			cout << sizeof(foo);
+			cout << sizeof(int);
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+%, memory model, object model, Ring HW-Standard-Impl

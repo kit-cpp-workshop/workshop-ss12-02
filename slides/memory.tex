@@ -1,0 +1,371 @@
+\section{C++ und der Speicher}
+
+
+\begin{frame}{Von-Neumann-Architektur}
+	Aus: \url{de.wikipedia.org/wiki/Von-Neumann-Architektur}
+	
+	\begin{block}{Komponenten der Von-Neumann-Architektur}
+		\begin{itemize}
+			\item CPU (vereinfacht)
+			\item Speicher mit wahlfreiem Zugriff und linearem Adressraum (RAM)
+			\item Ein-/Ausgabewerk bzw. \emph{anderes Zeug} (Festplatte, Netzwerk, Bildausgabe, Uhrzeit, \dots)
+		\end{itemize}
+	\end{block}
+	
+	\pause
+	
+	C++ selbst ermöglicht nur -- und eingeschränkte! -- Verwendung der CPU und des Speichers. Bis auf wenige Ausnahmen müssen alle anderen Komponenten über das \emph{Betriebssystem} mittels \emph{Application Binary Interfaces} angesprochen werden.
+\end{frame}
+
+\begin{frame}{Programm \& Programmablauf}
+	\footnotesize
+	
+	\begin{block}{Das Programm ist gespeichert (und nicht gelötet)}
+		\begin{itemize}
+			\item Die Befehle des Programms sind im RAM gespeichert.
+			\item Die Daten, auf welche das Programm zugreifen kann, sind ebenfalls im RAM gespeichert.
+			\item Es gibt einen \emph{instruction pointer}, der auf den nächst auszuführenden Befehl zeigt (= dessen Adresse enthält).
+		\end{itemize}
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{Das Programm wird sequentiell (schrittweise) ausgeführt}
+		\begin{itemize}
+			\item Der nächste Befehl wird mittels des \emph{instruction pointers} gelesen und ausgeführt.
+			\item Normalerweise wird anschließend der \emph{instruction pointer} um Eins erhöht ($\implies$ die Befehle stehen »nacheinander« im RAM).
+			\item Es gibt Sprung-Befehle und von einer Bedingung abhängige Sprung-Befehle, die den \emph{instruction pointer} auf einen anderen Wert setzen können.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Implementierung in C++}
+	\footnotesize
+	
+	\begin{block}{Speicher mit linearem Adressraum}
+		\begin{lstlisting}[language=C++]
+			int i;
+			i = 5;
+
+			int* pi;
+			pi = &i;
+		\end{lstlisting}
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{Instruction Pointer und Sprungbefehle}
+		\begin{lstlisting}[language=C++]
+			int i;
+			cin >> i;
+
+			if(42 == i)
+			    cout << "It's the solution!" << endl;
+			else
+			    cout << "It's NOT the solution!" << endl;
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Kurz: Datenstruktur}
+	\begin{itemize}
+		\item Wir haben linearen Speicher.
+		\item Wir haben meist nicht nur ein Datum, sondern viele Daten, die miteinander in Verbindung stehen.
+		\item Die Datenstruktur definiert (1), wie die Daten abgelegt und organisiert sind/werden (\emph{Implementierung} einer Datenstruktur).
+		\item Die Datenstruktur definiert (2) die Art und Weise, wie auf die Daten zugegriffen werden kann (\emph{Interface} der Datenstruktur).
+	\end{itemize}
+	
+	\pause
+	
+	\footnotesize
+	
+	\begin{block}{Einfachstes Beispiel: Array}
+		\emph{Implementierung}: Daten sind sequentiell im Speicher abgelegt
+		
+		\emph{Interface}:
+		\begin{itemize}
+			\item Zugriff auf jedes beliebige Element des Arrays anhand seiner eindeutigen Nummer ($\in \mathbb{N}_0$).
+			\item Die Nummern sind fortlaufend und beginnen bei 0, sie ändern sich nicht.
+			\item Von jedem Element gelangt man zu jedem anderen beliebigen Element des Arrays.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Stack}
+	Analogie: Ein Stapel Karten (ich lege eine Karte obenauf oder nehme sie weg).
+	
+	\hspace{1em}
+	\pause
+	
+	\emph{Implementierung}:
+	\begin{itemize}
+		\item Ein fester, zuvor angelegter Speicherblock (Array).
+		\item Ein Stack-Pointer, der eine Adresse auf dem Stack speichert. Zu Beginn zeigt dieser auf die höchste Adresse im Speicherblock.
+		\item Beim Einfügen (Entfernen) von Elementen wird der Stack-Pointer erniedrigt (erhöht).
+	\end{itemize}
+	
+	\pause
+	
+	\emph{Interface}:
+	\begin{itemize}
+		\item Einfügen eines Elements beliebiger Größe {\tiny(es muss natürlich in den verbleibenden freien Speicher des Stacks passen)} an das Ende des Stacks (\enquote{auf den Stapel legen}).
+		\item Zugriff auf das zuletzt eingefügte Element.
+		\item Entfernen des zuletzt eingefügten Elements.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\enquote{Stack-Variablen}, automatic storage duration}
+	\footnotesize
+
+	Die Definition eines »Dings« legt dieses (den Speicher!) auf den Stack des Programms {\tiny Ausnahme: \verb|static|}.
+	\begin{block}{}
+		\begin{lstlisting}[language=C++]
+			int foo;
+			double bar;
+			bool marvin = false;
+			MyClass myObject;
+			ofstream myOutputFileStream("C:/log.txt");
+		\end{lstlisting}
+	\end{block}
+	
+	\pause
+	
+	Am Ende des Blocks, in welchem das »Dings« erzeugt wurde (der \emph{scope} der Variable endet), wird es vom Stack genommen:
+	\begin{block}{}
+		\begin{lstlisting}[language=C++]
+			{
+			    int foo;
+			}
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Namen und Blöcke}
+	Normalerweise darf kann ich auf die Namen aller übergeordneten Blöcke zugreifen.
+	{\scriptsize Ausnahme: Sobald ein neuer Block beginnt, darf ich einen Namen neu verwenden und damit die alte Verwendung überdecken.}
+	
+	\begin{block}{}
+		\begin{lstlisting}[language=C++]
+			int foo = 42;
+			{
+			    int bar = foo;
+			    int foo = 44;
+			}
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Namen und Funktionen}
+	\footnotesize
+	
+	Da Funktionen von überall her aus aufgerufen werden können, dürfen innerhalb von Funktionen keine Namen von »übergeordneten« Blöcken verwendet werden.
+	
+	\scriptsize
+	\begin{block}{}
+		\begin{lstlisting}[language=C++]
+			void foobar() {
+			    // ++bar;    // VERBOTEN!
+			    int foo = 42;
+			    ...
+			    foobar();
+			}
+			
+			int barfoos() {
+			    int bar = 0;
+			    foobar();
+			}
+			
+			int main() {
+			    foobar();
+			}
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Stack-Frame (1)}
+	Scope, Blöcke, Namen usw. basieren auf dem Prinzip des \emph{Stack-Frames}.
+	
+	\pause
+	
+	\begin{block}{Stack-Frame}
+		\begin{itemize}
+			\item Jeder Block \verb|{ ... }| bildet einen \emph{Stack-Frame}.
+			\item Zu Beginn des Stack-Frames werden alle im Block definierten »Dinge« auf den Stack gelegt.
+			\item Nach Ende des Frames werden sie vom Stack genommen.
+			\item Die Reihenfolge auf dem Stack entspricht der Reihenfolge der Definition {\tiny(abgesehen von Optimierungen)}.
+		\end{itemize}
+	\end{block}
+	
+	\pause
+	
+	Der Stack-Pointer zu Beginn des Stack-Frames wird gespeichert und nennt sich Frame-Pointer (oder Base-Pointer).
+\end{frame}
+
+\begin{frame}[fragile]{Zugriff auf \enquote{Stack-Variablen}}
+	Der Stack an sich erlaubt nur den Zugriff auf das zuletzt eingefügte Element. ABER:
+	\pause
+	\begin{itemize}
+		\item Der Stack ist implementiert als ein Array plus einem Pointer.
+		\item In einem Array kann man auf jedes beliebige Element zugreifen!
+		\item Ein Variablen-Name in C++ wird daher durch einen \emph{festen} Offset vom Frame-Pointer ersetzt.
+	\end{itemize}
+	
+	\pause
+	
+	\footnotesize
+	\begin{block}{}
+		\begin{lstlisting}[language=C++]
+			//- Annahme *hier*: Stack-Pointer esp = 40
+			{   //- Frame-Pointer ebp := esp, hier: 40
+			    //- esp := esp - sizeof(foo) - sizeof(bar), hier: 32
+			    int foo;    // Tut hier nichts!
+			    foo = 42;   // foo entspricht ebp - 0 = ebp, hier: 40
+			    int bar;    // Tut hier nichts!
+			    bar = 21;   // bar entspricht ebp - sizeof(int), hier: 36
+			}   //- esp := ebp, hier: 40
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Grenzen des Stacks}
+	\begin{itemize}
+		\item Für den Stack wird \emph{einmalig} eine feste Menge zusamenhängender Speicher zur Verfügung gestellt.
+		\item Der Speicher für alle Variablen innerhalb eines Blocks wird zu Beginn des Blocks alloziert.
+		\item Die Variablen-Namen entsprechen \emph{festen} Offsets vom ebp.
+	\end{itemize}
+	
+	\pause
+	
+	\begin{itemize}
+		\item Problem 1: Wie alloziere ich Speicher für eine sehr große Menge Daten?
+		\item Problem 2: Wie alloziere ich eine zur Laufzeit festgelegte Menge Speicher?
+		\item Problem 3: Wie verwende ich Daten in anderen Stack-Frames (Funktionen usw.)?
+	\end{itemize}
+	
+	\pause
+	
+	\tiny
+	Detail:
+	Ich kann genau \emph{einmal} innerhalb eines Blocks eine dynamische, d.h. zur Laufzeit festgelegte, Menge Speicher allozieren;
+	und zwar \emph{nachdem der Speicher aller \enquote{Stack-Variablen} des Blocks alloziert wurde}.
+	
+	Das ist allerdings hässlich und nicht standardisiert!
+	Resultat: Ich kann in Standard-C++ \emph{gar nicht} eine dynamische Menge Speicher auf dem Stack allozieren!
+\end{frame}
+
+\begin{frame}{Heap}
+	Für die Schwächen und Unzulänglichkeiten des Stacks / automatic storage duration benötigt man eine andere Datenstruktur zur Speicherverwaltung.
+	Diese kann ein Heap sein.
+	
+	\pause
+	
+	\begin{block}{Heap}
+		\emph{Implementierung}: Kommt später! Für hier uninteressant! Plattform- und OS-abhängig!
+		
+		\pause
+		
+		\emph{Interface}:
+		\begin{itemize}
+			\item Einfügen eines Elements beliebiger Größe, \emph{keine Garantien über die Adresse des allozierten Speichers!}.
+			\item Entfernen eines beliebigen Elements.
+			\item Die Adressen eines Elements ändert sich \emph{nicht} wenn man andere Elemente einfügt oder entfernt.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Allokation auf dem Heap}
+	\verb|new TYPE;| bzw. \verb|new TYPE(PARAMETER);|
+	\begin{itemize}
+		\item Alloziert das »Ding« auf dem Heap (den Speicher!).
+		\item Ruft den Konstruktor von TYPE auf (und übergibt die PARAMETER).
+		\item Gibt die Adresse des Speichers zurück, als \verb|TYPE*|.
+	\end{itemize}
+	
+	\hspace*{3em}
+	
+	\verb|new TYPE[DYNAMIC_NUMBER];| -- die Variante mit Parametern \emph{existiert nicht!}
+	\begin{itemize}
+		\item Alloziert \verb|DYNAMIC_NUMBER| »Dinge« auf dem Heap (den Speicher!).
+		\item Ruft für jedes Element den \emph{default}-Konstruktor von TYPE auf.
+		\item Gibt die Adresse des Speichers des nullten Elements zurück, als \verb|TYPE*|.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\enquote{Heap-Variablen}}
+	Da die Adresse eines »Dings« auf dem Heap erst zur Laufzeit festgelegt wird, kann der Compiler nicht wie bei Stack-Variablen mit festen Werten (Offsets) arbeiten.
+	
+	\hspace{1em}
+	\pause
+	
+	Man arbeitet stattdessen mit zwei Schritten:
+	\begin{itemize}
+		\item Man speichert auf dem Stack die Adresse der Heap-Variablen.
+		\item Man lädt von der Adresse \emph{selbst} den Wert der Heap-Variablen $\Rightarrow$ \emph{dereferenzieren}
+	\end{itemize}
+	\pause
+	
+	\footnotesize
+	\begin{block}{}
+		\begin{lstlisting}[language=C++]
+			int* p;         // Stack-Variable
+			p = new int;    // Speichere in p die Adresse der Heap-Variablen.
+			cout << *p;     // Lade von der Adresse in p den Wert, Ausgabe.
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{dynamic storage duration}
+	Da C++ / der Compiler nur die Addresse des Objekts hat, kann der Compiler nicht so einfach wie beim Stack die »Dinge« wegräumen:
+	
+	{\footnotesize
+	\begin{block}{}
+		\begin{lstlisting}[language=C++, escapechar=\%]
+			int* p0 = 0;
+			{
+			    int* p = new int;
+			    p0 = p;
+			}
+			%\phantom{...}%
+			%\phantom{\Hilight delete p0;}%
+		\end{lstlisting}
+	\end{block}
+	}
+	
+	Man muss sich daher selbst um das Aufräumen kümmern!
+\end{frame}
+
+\begin{frame}[fragile]{Deallokation vom Heap}
+	\verb|delete ADDRESS;| -- ADDRESS muss ein Pointer sein, sei hier vom Typ TYPE*
+	\begin{itemize}
+		\item Ruft den Dekonstruktor vom Objekt auf (\verb|ADDRESS->~TYPE();|)
+		\item Dealloziert den Speicher vom Heap.
+	\end{itemize}
+	
+	\hspace*{4em}
+	
+	\verb|delete TYPE[DYNAMIC_NUMBER];|
+	\begin{itemize}
+		\item Ruft den Dekonstruktor jedes Elementes auf.
+		\item Dealloziert den Speicher vom Heap.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{dynamic storage duration}
+	Da C++ / der Compiler nur die Addresse des Objekts hat, kann der Compiler nicht so einfach wie beim Stack die »Dinge« wegräumen:
+	
+	{\footnotesize
+	\begin{block}{}
+		\begin{lstlisting}[language=C++, escapechar=\%]
+			int* p0;
+			{
+			    int* p = new int;
+			    p0 = p;
+			}
+			...
+			%\Hilight%delete p0;
+		\end{lstlisting}
+	\end{block}
+	}
+	
+	Man muss sich daher selbst um das Aufräumen kümmern!
+\end{frame}

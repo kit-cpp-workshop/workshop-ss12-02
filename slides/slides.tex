@@ -19,6 +19,8 @@
 \usepackage{subfig}
 \usepackage[right]{eurosym}
 \usepackage{listings}
+\usepackage{amssymb} % for |N
+\newcommand{\Hilight}{\makebox[0pt][l]{\color{cyan}\rule[-4pt]{0.65\linewidth}{14pt}}}	%from http://newsgroups.derkeiler.com/Archive/Comp/comp.text.tex/2008-10/msg00877.html
 
 %% SLIDE FORMAT
 
@@ -88,6 +90,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % ADD OWN SECTIONS HERE %
 %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{cpp}
+\include{memory}
 \include{oop}
 
 \end{document}
