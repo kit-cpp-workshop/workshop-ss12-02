@@ -130,7 +130,7 @@
 	
 	\pause
 	
-	Am Ende des Blocks, in welchem das »Dings« erzeugt wurde (der \emph{scope} der Variable endet), wird es vom Stack genommen:
+	Am Ende des Blocks, in welchem das »Ding« erzeugt wurde (der \emph{scope} der Variablen endet), wird es vom Stack genommen:
 	\begin{block}{}
 		\begin{lstlisting}[language=C++]
 			{
@@ -141,7 +141,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Namen und Blöcke}
-	Normalerweise darf kann ich auf die Namen aller übergeordneten Blöcke zugreifen.
+	Normalerweise darf und kann ich auf die Namen aller übergeordneten Blöcke zugreifen.
 	{\scriptsize Ausnahme: Sobald ein neuer Block beginnt, darf ich einen Namen neu verwenden und damit die alte Verwendung überdecken.}
 	
 	\begin{block}{}
@@ -260,7 +260,7 @@
 	\pause
 	
 	\begin{block}{Heap}
-		\emph{Implementierung}: Kommt später! Für hier uninteressant! Plattform- und OS-abhängig!
+		\emph{Implementierung}: Magie!
 		
 		\pause
 		
@@ -300,7 +300,7 @@
 	Man arbeitet stattdessen mit zwei Schritten:
 	\begin{itemize}
 		\item Man speichert auf dem Stack die Adresse der Heap-Variablen.
-		\item Man lädt von der Adresse \emph{selbst} den Wert der Heap-Variablen $\Rightarrow$ \emph{dereferenzieren}
+		\item Man lädt von der Adresse \emph{selbst} den Wert des Heap-»Dings« $\Rightarrow$ \emph{dereferenzieren}
 	\end{itemize}
 	\pause
 	
@@ -308,7 +308,7 @@
 	\begin{block}{}
 		\begin{lstlisting}[language=C++]
 			int* p;         // Stack-Variable
-			p = new int;    // Speichere in p die Adresse der Heap-Variablen.
+			p = new int;    // Speichere in p die Adresse des Heap->Dings<.
 			cout << *p;     // Lade von der Adresse in p den Wert, Ausgabe.
 		\end{lstlisting}
 	\end{block}
