@@ -64,18 +64,121 @@
 		Jedes Byte hat eine eindeutige Adresse.
 	\end{block}
 	
-	\footnotesize
-	\begin{block}{}
-		\begin{lstlisting}[language=C++]
-			int foo;
-			int bar;
-			double d;
-			double& rd = d;
-			
-			cout << sizeof(foo);
-			cout << sizeof(int);
-		\end{lstlisting}
-	\end{block}
+	\pause
+	
+	\includegraphics[width=\linewidth]{images/free}
 \end{frame}
 
-%, memory model, object model, Ring HW-Standard-Impl
+\begin{frame}[fragile]{»Dinge« und Speicher}
+	Alle Definitionen legen »Dinge« an.\\
+	{\tiny Ausnahme: \verb|static|}
+	
+	{\footnotesize
+	\begin{block}{}
+		\lstinputlisting[language=C++, linerange={3-4, 6-6}]{cpp-code/objects.cpp}
+	\end{block}
+	}
+	
+	\pause
+	\vspace{1em}
+	
+	\includegraphics[width=\linewidth]{images/object_things}
+\end{frame}
+
+\begin{frame}[fragile]{»Dinge« und Referenzen}
+	Eine Referenz ist ein zusätzlicher Namen für \emph{dasselbe} »Ding«.
+	
+	{\footnotesize
+	\begin{block}{}
+		\lstinputlisting[language=C++, linerange=14-15]{cpp-code/objects.cpp}
+	\end{block}
+	}
+	
+	\pause
+	\vspace{1em}
+	
+	\includegraphics[width=\linewidth]{images/object_refs}
+\end{frame}
+
+\begin{frame}[fragile]{Referenzen als Parameter}
+	Nutzt man eine Referenz als Parameter, so kann man innerhalb der Funktion den Wert des übergebenen »Dings« ändern:
+	
+	{\footnotesize
+	\begin{block}{}
+		\lstinputlisting[language=C++, linerange=28-32]{cpp-code/objects.cpp}
+	\end{block}
+	}
+	
+	\pause
+	
+	{\footnotesize
+	\begin{block}{}
+		\lstinputlisting[language=C++, linerange=19-22]{cpp-code/objects.cpp}
+	\end{block}
+	}
+\end{frame}
+
+\begin{frame}[fragile]{Adressen und Pointer}
+	Jedes Byte hat eine eindeutige Adresse.
+	
+	Man darf keine Annahmen darüber treffen, wie diese Adresse tatsächlich aussieht oder wie groß sie ist!
+	Was man tun darf, sind Operationen mit \emph{Pointern}.
+	
+	\pause
+	
+	Wir wollen jedoch zwecks Anschauung eine Adresse mit der Nummer \emph{der} Bytes eines »Dings« identifizieren.
+	
+	\includegraphics[width=\linewidth]{images/free}
+\end{frame}
+
+\begin{frame}[fragile]{»Dinge« und Pointer}
+	Sei \verb|NAME| der Name eines »Dings«. Mit \verb|&NAME| erhalte ich dann die Adresse des »Dings«. Die Adresse selbst ist auch wieder ein »Ding«!
+	
+	\vspace{1em}
+	\pause
+	
+	Als »Ding« hat die Adresse einen Typ:
+	{\footnotesize
+	\begin{block}{}
+		\lstinputlisting[language=C++, linerange=24-25]{cpp-code/objects.cpp}
+	\end{block}
+	}
+	
+	\pause
+	
+	Das »Ding« \verb|NAME| habe den Typen \verb|TYPE|. Dann hat die Adresse des »Dings« den Typ \verb|TYPE*|.
+\end{frame}
+
+\begin{frame}[fragile]{»Dinge«, Pointer und Adressen}
+	Ein Beispiel:
+	
+	{\footnotesize
+	\begin{block}{}
+		\lstinputlisting[language=C++, linerange={3-4, 6-6, 10-10, 27-27}]{cpp-code/objects.cpp}
+	\end{block}
+	}
+	
+	\pause
+	\vspace{1em}
+	
+	\includegraphics[width=\linewidth]{images/object_points_addr}
+\end{frame}
+
+\begin{frame}[fragile]{Pointer vs. Referenzen}
+	\footnotesize
+	\begin{tabular}{c|c}
+		Pointer & Referenz \\ \hline
+		ist ein »Ding« & ist nur ein zusätzlicher Name \\
+		enthält eine Adresse & enthält selbst nichts \\
+		Inhalt kann sich ändern & bezieht sich immer auf dasselbe »Ding« \\
+		Inhalt muss nicht sinnvoll sein & bezieht sich auf ein existierendes »Ding« \\
+	\end{tabular}
+	
+	\pause
+	
+	{\footnotesize
+	\begin{block}{}
+		\lstinputlisting[language=C++, linerange={4-4, 27-31}]{cpp-code/objects.cpp}
+	\end{block}
+	}
+\end{frame}

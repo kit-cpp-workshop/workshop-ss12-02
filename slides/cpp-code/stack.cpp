@@ -12,7 +12,6 @@ int main()
 void foo()
 {
 	int foo;
-	double bar;
 	int* pi;
 	MyType* po;
 	
