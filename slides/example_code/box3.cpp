@@ -3,7 +3,8 @@ using namespace std;
 
 class Box {
 public:
-    void Box(double l, double w, double h);
+    Box(double l, double w, double h);
+    ~Box();
     double getVolume();
 private:
     double length;
@@ -19,8 +20,14 @@ Box::Box(double l, double w, double h) : width(w), length(l), height(h) {
     cout << "Box is being created";
 }
 
+Box::~Box()
+{
+    cout << "Box is being destroyed";
+}
+
 int main() {
     Box* myBox = new Box(3, 5, 2.7);
     cout << myBox->getVolume();
     cout << myBox->length; // Fehler!
+    delete myBox;
 }
