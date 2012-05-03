@@ -1,8 +1,87 @@
 \subsection{Heap}
 
 \begin{frame}{Dynamic storage duration}
-Speicherdauer vs. Lebensdauer!!!!!
+	\begin{itemize}[<+->]
+		\item »Dinge« \enquote{auf dem Stack} werden automatisch verwaltet
+		\item Wie verwalte ich selbst »Dinge«?
+		\item Wie nutze ich sehr große »Dinge«?
+	\end{itemize}
+	
+	\vspace{2em}
+	
+	\uncover<+->
+	{
+		Die Lösung: \enquote{dynamische} Speicherdauer bzw. der \emph{Heap}
+	}
 \end{frame}
+
+\begin{frame}[fragile]{Allokation und Deallokation}
+	\begin{itemize}[<+->]
+		\item Mit \verb|new TYPE| lege ich ein »Ding« auf dem Heap an.
+		\item Der \verb|new|-Ausdruck gibt einen Pointer zurück (\verb|TYPE*|).
+		\item Mit \verb|delete POINTER;| lösche ich das »Ding« vom Heap, auf welches der \verb|POINTER| verweist.
+	\end{itemize}
+	
+	\onslide<4->
+		\begin{block}{ACHTUNG}
+			\begin{itemize}[<+-| alert@+>]
+				\item Ohne einen Pointer lässt sich ein »Ding« nicht vom Heap löschen!
+				\item \emph{Daran denken}, den Speicher wieder freizugeben, wenn er nicht mehr gebraucht wird!
+				\item \emph{Niemals} ein »Ding« mehrmals freigeben!
+				\item \emph{Niemals} einen Pointer auf ein freigegebenes »Ding« derefenzieren!
+				\item Gute Angewohnheit: Nach \verb|delete p;| sofort \verb|p = 0;|, sorgt für (fast) sicheren Programmabsturz im Falle von \verb|*p|
+			\end{itemize}
+		\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Arrays auf dem Heap}
+	Arrays lassen sich auch \enquote{auf dem Heap anlegen}:
+	
+	\begin{itemize}[<+->]
+		\item Mit \verb|new TYPE[DYNAMIC_NUMBER]| lege \verb|DYNAMIC_NUMBER| »Ding« auf dem Heap an.
+		\item Der \verb|new|-Ausdruck gibt einen Pointer auf das nullte Element zurück (\verb|TYPE*|).
+		\item Mit \verb|delete[] POINTER;| lösche ich den Array vom Heap, auf welchen der \verb|POINTER| verweist.
+	\end{itemize}
+\end{frame}
+
+
+{\refframe
+\begin{frame}[fragile]{Referenz: Allokation auf dem Heap}
+	\verb|new TYPE;| \hspace{1em} bzw. \hspace{1em} \verb|new TYPE(PARAMETER);|
+	\begin{itemize}
+		\item Alloziert das »Ding« auf dem Heap (den Speicher!).
+		\item Ruft den Konstruktor von TYPE auf (und übergibt die PARAMETER).
+		\item Gibt die Adresse des Speichers zurück, als \verb|TYPE*|.
+	\end{itemize}
+	
+	\vspace{2em}
+	
+	\verb|new TYPE[DYNAMIC_NUMBER];| -- die Variante mit Parametern \emph{existiert nicht!}
+	\begin{itemize}
+		\item Alloziert \verb|DYNAMIC_NUMBER| »Dinge« auf dem Heap (den Speicher!).
+		\item Ruft für jedes Element den \emph{default}-Konstruktor von TYPE auf.
+		\item Gibt die Adresse des Speichers des nullten Elements zurück, als \verb|TYPE*|.
+	\end{itemize}
+\end{frame}
+}
+
+{\refframe
+\begin{frame}[fragile]{Referenz: Deallokation vom Heap}
+	\verb|delete ADDRESS;| -- ADDRESS muss eine Rückgabe von \verb|new| sein, sei hier vom Typ TYPE*
+	\begin{itemize}
+		\item Ruft den Destruktor vom Objekt auf (\verb|ADDRESS->~TYPE();|)
+		\item Dealloziert den Speicher vom Heap.
+	\end{itemize}
+	
+	\vspace{2em}
+	
+	\verb|delete[] ADDRESS;| -- ADDRESS muss eine Rückgabe von \verb|new [...]| sein
+	\begin{itemize}
+		\item Ruft nacheinander die Destruktoren der Elementes auf, beginnend mit dem letzten.
+		\item Dealloziert den Speicher vom Heap.
+	\end{itemize}
+\end{frame}
+}
 
 
 \begin{frame}[fragile]{Stack vs. Heap}
@@ -12,7 +91,7 @@ Speicherdauer vs. Lebensdauer!!!!!
 			\item Direkter, schneller Zugriff
 			\item Optimierungen gut und einfach(er) für den Compiler
 			\item Erzeugung \& Aufräumen ist automatisch
-			\item Begrenzter Speicher (z.B. 1~MB auf Desktop-Rechner)
+			\item Begrenzter Speicher (z.B. 1~MB)
 			\item Größe des »Dings« und Anzahl muss dem Compiler bekannt sein
 		\end{itemize}
 	\end{block}

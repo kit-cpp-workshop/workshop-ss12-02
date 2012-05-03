@@ -21,6 +21,46 @@
 \usepackage{listings}
 \usepackage{amssymb} % for |N
 \newcommand{\Hilight}{\makebox[0pt][l]{\color{cyan}\rule[-4pt]{0.65\linewidth}{14pt}}}	%from http://newsgroups.derkeiler.com/Archive/Comp/comp.text.tex/2008-10/msg00877.html
+\lstset{tabsize=3}
+
+\newcommand{\refframe}
+{
+	\usebackgroundtemplate
+	{
+		\begin{pgfpicture}{0mm}{0mm}{\paperwidth}{\paperheight}
+		
+			\pgfsetnonzerorule
+			
+			% draw bg color
+			{
+				\color{black!15}
+				\pgfpathrectangle{\pgfpoint{0mm}{0mm}}{\pgfpoint{\paperwidth}{\paperheight}}
+				\pgfusepath{fill}
+			}
+			
+			%+ draw grey frame
+			{
+				\pgfsetcornersarced{\pgfpoint{2mm}{2mm}}
+				
+				\pgfpathmoveto{\pgfpoint{\paperwidth-1mm}{9mm}}
+				\pgfpathlineto{\pgfpoint{1mm}{9mm}}
+				\pgfpathlineto{\pgfpoint{1mm}{\paperheight-1mm}}
+			}
+
+			{
+				\pgfsetcornersarced{\pgfpoint{2mm}{2mm}}
+				\pgfpathmoveto{\pgfpoint{1mm}{\paperheight-1mm}}
+				\pgfpathlineto{\pgfpoint{\paperwidth-1mm}{\paperheight-1mm}}
+				\pgfpathlineto{\pgfpoint{\paperwidth-1mm}{9mm}}
+			}
+			%- draw grey frame
+
+			\color{yellow}
+			\pgfusepath{fill}
+
+		\end{pgfpicture}
+	}
+}
 
 %% SLIDE FORMAT
 

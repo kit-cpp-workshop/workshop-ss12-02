@@ -23,13 +23,13 @@
 	\begin{block}{Block}
 		\begin{itemize}
 			\item Ein \emph{Block} beginnt mit \verb|{| und endet mit \verb|}|.
-			\item {\footnotesize Ein Block kann mehrere \emph{statements} enthalten -- z.B. Definitionen, Zuweisungen, Funktionsaufrufe usw.}
-			\item {\footnotesize Anderer Name: \emph{compound statement}}
-			\item {\footnotesize Die geschweiften Klammern bezeichnen \emph{keine} Blöcke bei: Klassen, \verb|namespace|, \verb|enum|}
+			\item<3-> {\footnotesize Ein Block kann mehrere \emph{statements} enthalten -- z.B. Definitionen, Zuweisungen, Funktionsaufrufe usw.}
+			\item<3-> {\footnotesize Anderer Name: \emph{compound statement}}
+			\item<3-> {\footnotesize Die geschweiften Klammern bezeichnen \emph{keine} Blöcke bei: Klassen, \verb|namespace|, \verb|enum|}
 		\end{itemize}
 	\end{block}
 	
-	\pause
+	\onslide<2->
 	\vspace{1em}
 	
 	Definiere ich ein »Ding«, so wird es bis zum Ende des Blocks, in welchem es erzeugt wurde, gespeichert.
@@ -39,6 +39,7 @@
 	Diese Art der vorgegebenen Speicherdauer nennt sich \emph{automatic storage duration}.
 \end{frame}
 
+{\refframe
 \begin{frame}[fragile]{Referenz: Definition von »Dingen«, Auf-den-Stack-legen}
 	\verb|TYPE name;| \hspace{1em} bzw. \hspace{1em} \verb|TYPE name(PARAMETER);|
 	\begin{itemize}
@@ -56,20 +57,22 @@
 		\item Ruft nacheinander für jedes Element den \emph{default}-Konstruktor auf, beginnend beim nullten Element.
 	\end{itemize}
 \end{frame}
+}
 
 \begin{frame}{Reihenfolge der Definitionen}
 	\begin{itemize}
 		\item Wenn ich (mehrere) »Dinge« innerhalb eines Blocks definiere, werden diese in der Reihenfolge der Definition auf einen Stapel abgelegt -- den \emph{Stack}.
 		\item Das ist nicht wörtlich zu nehmen! Der Stack ist nur gedanklich!
-		\item Beim Ende des Blocks werden die »Dinge« wieder vom Stack genommen, und zwar in der Reihenfolge, in welcher sie definiert wurden (Standard, 6.6 2).
+		\item<2-> Beim Ende des Blocks werden die »Dinge« wieder vom Stack genommen, und zwar entgegengesetzt der Reihenfolge, in welcher sie definiert wurden (Standard, 6.6 2).
 	\end{itemize}
 	
-	\pause
+	\onslide<3->
 	\vspace{1em}
 	
-	Man kann dieses Verhalten nicht beeinflussen!
+	\alert<3>{Man kann dieses Verhalten nicht beeinflussen!}
 \end{frame}
 
+{\refframe
 \begin{frame}[fragile]{Referenz: Vom-Stack-nehmen}
 	Für ein »Ding«, welches als \verb|TYPE name| definiert wurde:
 	\begin{itemize}
@@ -85,6 +88,7 @@
 		\item Gibt den reservierten Speicher wieder frei.
 	\end{itemize}
 \end{frame}
+}
 
 
 \stackframe{Am Anfang war die Leere\dots}{\empty}{
