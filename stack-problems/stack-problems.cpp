@@ -107,7 +107,17 @@ void ownership()
 		ptr = &value;
 	}
 
-	*ptr = 66.6;
+
+	double result = *ptr;
+
+
+	cout << "Ich lebe noch? Seltsam.." << endl;
+
+
+	{
+		double newValue = 13.37;
+		result = *ptr;
+	}
 
 
 	cout << "Wie, ich lebe noch?" << endl;
