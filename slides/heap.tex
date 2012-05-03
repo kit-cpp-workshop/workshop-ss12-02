@@ -1,0 +1,27 @@
+\subsection{Heap}
+
+\begin{frame}{Dynamic storage duration}
+Speicherdauer vs. Lebensdauer!!!!!
+\end{frame}
+
+
+\begin{frame}[fragile]{Stack vs. Heap}
+	\begin{block}{Stack}
+		\begin{itemize}
+			\item Schnelle Allokation \& Deallokation {\tiny(z.B. ein einzige Operation für beliebig viel »Dinge«!)}
+			\item Direkter, schneller Zugriff
+			\item Optimierungen gut und einfach(er) für den Compiler
+			\item Erzeugung \& Aufräumen ist automatisch
+			\item Begrenzter Speicher (z.B. 1~MB auf Desktop-Rechner)
+			\item Größe des »Dings« und Anzahl muss dem Compiler bekannt sein
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Heap}
+		\begin{itemize}
+			\item Für große »Dinge«
+			\item Eigene Verwaltung der Speicherdauer
+			\item Speicherverwaltung während das Programm läuft
+		\end{itemize}
+	\end{block}
+\end{frame}

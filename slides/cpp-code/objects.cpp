@@ -14,7 +14,7 @@ int main()
 	int bar;
 	int& bar2 = bar;
 	bar = 4;
-	bar2 = 5;
+	bar2 = 4;
 	
 	double alice = 0;
 	double bob = 1;

@@ -4,6 +4,7 @@ int main()
 	double bar;
 	{
 		MyType myObj;
+		bool truth;
 	}
 	
 	return 0;

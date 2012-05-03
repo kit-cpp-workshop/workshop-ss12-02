@@ -1,0 +1,124 @@
+\subsection{Stack}
+
+\newcommand{\stackframe}[3]{
+	\begin{frame}[t]{#1}
+		\begin{columns}
+			\column[t]{0.25\textwidth}
+				\ifthenelse{ \equal{#2}{\empty} }{}
+				{
+					\includegraphics[width=\linewidth]{images/#2}
+				}
+			
+			\column[t]{0.75\textwidth}
+				\begin{block}{}
+					#3
+				\end{block}
+		\end{columns}
+	\end{frame}
+}
+
+
+
+\begin{frame}[fragile]{Speicherdauer von »Dingen«}
+	\begin{block}{Block}
+		\begin{itemize}
+			\item Ein \emph{Block} beginnt mit einer \verb|{| und endet mit der nächsten \verb|}|.
+			\item {\footnotesize Ein Block kann mehrere \emph{statements} enthalten -- z.B. Definitionen, Zuweisungen, Funktionsaufrufe usw.}
+			\item {\footnotesize Anderer Name: \emph{compound statement}}
+			\item {\footnotesize Die geschweiften Klammern bezeichnen \emph{keine} Blöcke bei: Klassen, \verb|namespace|, \verb|enum|}
+		\end{itemize}
+	\end{block}
+	
+	\pause
+	\vspace{1em}
+	
+	Definiere ich ein »Ding«, so wird es bis zum Ende des Blocks, in welchem es erzeugt wurde, gespeichert.
+	
+	\vspace{0.5em}
+	
+	Diese Art der vorgegebenen Speicherdauer nennt sich \emph{automatic storage duration}.
+\end{frame}
+
+\begin{frame}[fragile]{Referenz: Definition von »Dingen«, Auf-den-Stack-legen}
+	\verb|TYPE name;| \hspace{1em} bzw. \hspace{1em} \verb|TYPE name(PARAMETER);|
+	\begin{itemize}
+		\item Stellt sicher, dass es Speicher für das »Ding« vom Typ \verb|TYPE| gibt.
+		\item Führt den Namen \verb|name| für das »Ding« ein.
+		\item Ruft den Konstruktor des »Dings« auf (und übergibt die PARAMETER).
+	\end{itemize}
+	
+	\vspace{1em}
+	
+	\verb|TYPE name[STATIC_NUMBER];| -- die Variante mit Parametern \emph{existiert nicht!}
+	\begin{itemize}
+		\item Stellt sicher, dass es Speicher für \verb|STATIC_NUMBER| »Dinge« gibt.
+		\item Führt den Namen \verb|name| ein, dieser ist (fast) identisch zur Adresse des nullten Elements.
+		\item Ruft nacheinander für jedes Element den \emph{default}-Konstruktor auf, beginnend beim nullten Element.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Reihenfolge der Definitionen}
+	\begin{itemize}
+		\item Wenn ich (mehrere) »Dinge« innerhalb eines Blocks definiere, werden diese in der Reihenfolge der Definition auf einen Stapel abgelegt -- den \emph{Stack}.
+		\item Das ist nicht wörtlich zu nehmen! Der Stack ist nur gedanklich!
+		\item Beim Ende des Blocks werden die »Dinge« wieder vom Stack genommen, und zwar in der Reihenfolge, in welcher sie definiert wurden (Standard, 6.6 2).
+	\end{itemize}
+	
+	\pause
+	\vspace{1em}
+	
+	Man kann dieses Verhalten nicht beeinflussen!
+\end{frame}
+
+\begin{frame}[fragile]{Referenz: Vom-Stack-nehmen}
+	Für ein »Ding«, welches als \verb|TYPE name| definiert wurde:
+	\begin{itemize}
+		\item Ruft den Destruktor des »Dings« auf.
+		\item Gibt den reservierten Speicher wieder frei.
+	\end{itemize}
+	
+	\vspace{2em}
+	
+	Für ein »Ding«, welches als \verb|TYPE name[STATIC_NUMBER]| definiert wurde:
+	\begin{itemize}
+		\item Ruft nacheinander für jedes Element den Destruktor auf, beginnend beim nullten Element.
+		\item Gibt den reservierten Speicher wieder frei.
+	\end{itemize}
+\end{frame}
+
+
+\stackframe{Am Anfang war die Leere\dots}{\empty}{
+	\lstinputlisting[language=C++, linerange=1-1]{cpp-code/stack.cpp}
+}
+
+\stackframe{Definition von »Dingen« (1)}{stack_1}{
+	\lstinputlisting[language=C++, linerange=1-3]{cpp-code/stack.cpp}
+}
+
+\stackframe{Definition von »Dingen« (2)}{stack_2}{
+	\lstinputlisting[language=C++, linerange=1-4]{cpp-code/stack.cpp}
+}
+
+\stackframe{Definition von »Dingen« (3)}{stack_2_plus}{
+	\lstinputlisting[language=C++, linerange=1-5]{cpp-code/stack.cpp}
+}
+
+\stackframe{Definition von »Dingen« (4)}{stack_3}{
+	\lstinputlisting[language=C++, linerange=1-6]{cpp-code/stack.cpp}
+}
+
+\stackframe{Definition von »Dingen« (5)}{stack_4}{
+	\lstinputlisting[language=C++, linerange=1-7]{cpp-code/stack.cpp}
+}
+
+\stackframe{Definition von »Dingen« (6)}{stack_3}{
+	\lstinputlisting[language=C++, linerange=1-8]{cpp-code/stack.cpp}
+}
+
+\stackframe{Definition von »Dingen« (7)}{stack_2_plus}{
+	\lstinputlisting[language=C++, linerange=1-8]{cpp-code/stack.cpp}
+}
+
+\stackframe{Definition von »Dingen« (8)}{stack_2}{
+	\lstinputlisting[language=C++, linerange=1-9]{cpp-code/stack.cpp}
+}

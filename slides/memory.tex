@@ -337,7 +337,7 @@
 \begin{frame}[fragile]{Deallokation vom Heap}
 	\verb|delete ADDRESS;| -- ADDRESS muss eine Rückgabe von \verb|new| sein, sei hier vom Typ TYPE*
 	\begin{itemize}
-		\item Ruft den Dekonstruktor vom Objekt auf (\verb|ADDRESS->~TYPE();|)
+		\item Ruft den Destruktor vom Objekt auf (\verb|ADDRESS->~TYPE();|)
 		\item Dealloziert den Speicher vom Heap.
 	\end{itemize}
 	
@@ -345,7 +345,7 @@
 	
 	\verb|delete[] ADDRESS;| -- ADDRESS muss eine Rückgabe von \verb|new [...]| sein
 	\begin{itemize}
-		\item Ruft den Dekonstruktor jedes Elementes auf.
+		\item Ruft den Destruktor jedes Elementes auf.
 		\item Dealloziert den Speicher vom Heap.
 	\end{itemize}
 \end{frame}

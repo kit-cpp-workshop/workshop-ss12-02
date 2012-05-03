@@ -9,16 +9,15 @@
 	
 	\pause
 	
-	\small
 	\begin{block}{Standard, 1.8}
 		Ein »Ding«
-		\begin{itemize}
-			\item ist ein Speicherbereich, aber \emph{keine} Funktion (auch wenn diese Speicher belegt!).
-			\item wird durch eine Definition, den \verb|new|-Ausdruck oder vom Compiler erzeugt.
-			\item hat einen Typen und eine Speicherdauer {\tiny (die die Lebensdauer des dort gespeicherten »Objekts« beeinflusst)}; \emph{kann} einen \emph{Namen} haben.
-			\item hat eine Größe von einem oder mehr Bytes {\tiny (abgesehen von bit-fields)}.
-			\item von »einfachem« {\tiny (POD)} Typ besetzt eine zusammenhängende Menge Bytes.
-		\end{itemize}
+		\begin{enumerate}
+			\item ist ein Speicherbereich, aber \emph{keine} Funktion {\tiny(auch wenn diese Speicher belegt!)}.
+			\item hat eine Speicherdauer, einen Typen und \emph{kann} einen \emph{Namen} haben.
+			\item {\scriptsize hat eine Größe von einem oder mehr Bytes {\tiny (abgesehen von bit-fields)}.}
+			\item {\scriptsize von »einfachem« {\tiny (POD)} Typ besetzt eine zusammenhängende Menge Bytes.}
+			\item {\scriptsize wird durch eine Definition, den \verb|new|-Ausdruck oder vom Compiler erzeugt.}
+		\end{enumerate}
 	\end{block}
 \end{frame}
 
@@ -53,8 +52,21 @@
 
 \subsection{Referenzen}
 
+\begin{frame}[fragile]{Referenz: Referenzen}
+	\verb|TYPE& add_name = orig_name;|
+	\begin{itemize}
+		\item Führt \verb|add_name| als zusätzlichen Namen für das »Ding« mit dem Namen \verb|orig_name| ein.
+		\item \verb|add_name| heißt auch eine Referenz auf \verb|orig_name|.
+	\end{itemize}
+	
+	\vspace{2em}
+	
+	Achtung: Eine Referenz muss immer gleich »initialisiert« werden, d.h. mittels \verb|=| einem »Ding« zugeordnet. {\tiny Bei Klassen-Membern in der Initialisations-Liste des Konstruktors.}
+\end{frame}
+
 \begin{frame}[fragile]{»Dinge« und Referenzen}
-	Eine Referenz ist ein zusätzlicher Namen für \emph{dasselbe} »Ding«.
+	Eine Referenz ist ein zusätzlicher Namen für \emph{dasselbe} »Ding«.\\
+	Die Speicherdauer wird dadurch \emph{nicht} beeinflusst.
 	
 	{\footnotesize
 	\begin{block}{}
@@ -63,9 +75,16 @@
 	}
 	
 	\pause
-	\vspace{1em}
 	
 	\includegraphics[width=\linewidth]{images/object_refs}
+	
+	\pause
+	
+	{\footnotesize
+	\begin{block}{}
+		\lstinputlisting[language=C++, linerange=16-17]{cpp-code/objects.cpp}
+	\end{block}
+	}
 \end{frame}
 
 \begin{frame}[fragile]{Referenzen als Parameter}
@@ -93,9 +112,10 @@
 	Jedes Byte hat eine eindeutige Adresse.
 	
 	Man darf keine Annahmen darüber treffen, wie diese Adresse tatsächlich aussieht oder wie groß sie ist!
-	Was man tun darf, sind Operationen mit \emph{Pointern}.
+	Was man tun darf, sind Operationen mit \emph{Pointern}. Pointer sind Container von Adressen.
 	
 	\pause
+	\vspace{1em}
 	
 	Wir wollen jedoch zwecks Anschauung eine Adresse mit der Nummer \emph{der} Bytes eines »Dings« identifizieren.
 	
@@ -120,20 +140,52 @@
 	Das »Ding« \verb|NAME| habe den Typen \verb|TYPE|. Dann hat die Adresse des »Dings« den Typ \verb|TYPE*|.
 \end{frame}
 
+
 \begin{frame}[fragile]{»Dinge«, Pointer und Adressen}
 	Ein Beispiel:
 	
 	{\footnotesize
 	\begin{block}{}
-		\lstinputlisting[language=C++, linerange={3-4, 6-6, 10-10, 27-27}]{cpp-code/objects.cpp}
+		\lstinputlisting[language=C++, linerange={3-4, 6-6}]{cpp-code/objects.cpp}
 	\end{block}
 	}
 	
-	\pause
 	\vspace{1em}
-	
-	\includegraphics[width=\linewidth]{images/object_points_addr}
+	\phantom{
+		\includegraphics[width=\linewidth]{images/object_points_addr}
+	}
 \end{frame}
+
+	\begin{frame}[fragile]{»Dinge«, Pointer und Adressen}
+		Ein Beispiel:
+		
+		{\footnotesize
+		\begin{block}{}
+			\lstinputlisting[language=C++, linerange={3-4, 6-6, 10-10}]{cpp-code/objects.cpp}
+		\end{block}
+		}
+		
+		\vspace{1em}
+		\phantom{
+			\includegraphics[width=\linewidth]{images/object_points_addr}
+		}
+	\end{frame}
+
+	\begin{frame}[fragile]{»Dinge«, Pointer und Adressen}
+		Ein Beispiel:
+		
+		{\footnotesize
+		\begin{block}{}
+			\lstinputlisting[language=C++, linerange={3-4, 6-6, 10-10, 27-27}]{cpp-code/objects.cpp}
+		\end{block}
+		}
+		
+		\pause
+		\vspace{1em}
+		
+		\includegraphics[width=\linewidth]{images/object_points_addr}
+	\end{frame}
+
 
 \begin{frame}[fragile]{Pointer vs. Referenzen}
 	\footnotesize
