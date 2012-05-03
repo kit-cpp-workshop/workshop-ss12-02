@@ -14,12 +14,12 @@ void ownership();
 
 int main()
 {
-	int totCode;
+	int todCode;
 	cout << "Welchen Tod soll ich heute sterben?" << endl;
-	cin >> totCode;
+	cin >> todCode;
 
 
-	switch(totCode)
+	switch(todCode)
 	{
 	case 0:
 		variableLengthArray();
@@ -54,7 +54,7 @@ int main()
 
 void variableLengthArray()
 {
-	cout << "Heute sterbe ich den Tot des dynamisch grossen Speichers." << endl << endl;
+	cout << "Heute sterbe ich den Tod des dynamisch grossen Speichers." << endl << endl;
 
 
 	unsigned int size = 0;
@@ -65,7 +65,7 @@ void variableLengthArray()
 	double foobar[size];
 
 
-	// Leider kompilliert das der gcc (wenn nicht ultra-pedantisch eingestellt),
+	// Leider kompiliert das der gcc (wenn nicht ultra-pedantisch eingestellt),
 	// sodass ich die Notbremse ziehe und das Programm Suizid begehen lasse.
 	throw up;
 }
@@ -73,7 +73,7 @@ void variableLengthArray()
 
 void stackSize()
 {
-	cout << "Heute sterbe ich den Tot des endlichen Stacks." << endl << endl;
+	cout << "Heute sterbe ich den Tod des endlichen Stacks." << endl << endl;
 
 
 	double laaaaaargeArray[4000000];
@@ -85,7 +85,7 @@ void stackSize()
 
 void recursion(int i)
 {
-	cout << "Heute sterbe ich den Tot der Rekursion: " << i << endl;
+	cout << "Heute sterbe ich den Tod der Rekursion: " << i << endl;
 
 
 	recursion(i + 1);
@@ -97,7 +97,7 @@ void recursion(int i)
 
 void ownership()
 {
-	cout << "Heute sterbe ich den Tot des ownership / der automatic storage duration." << endl;
+	cout << "Heute sterbe ich den Tod des ownership / der automatic storage duration." << endl;
 
 
 	double* ptr;
