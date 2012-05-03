@@ -11,10 +11,10 @@ int main()
 //	...
 //	}
 	
-	int  foo;
-	int& foo2 = foo;
-	foo  = 4;
-	foo2 = 4;
+	int  bar;
+	int& bar2 = bar;
+	bar  = 4;
+	bar2 = 4;
 	
 	double alice = 0;
 	double bob   = 1;
