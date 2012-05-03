@@ -9,7 +9,7 @@ public:
         height = h;
     };
     void ~Box() {
-        cout << "box is being deleted";
+        cout << "box is being destroyed";
     };
     double getVolume() {
         return length * width * height;
