@@ -71,13 +71,16 @@ void variableLengthArray()
 }
 
 
+void largeStack()
+{
+	double laaaaaargeArray[4000000];
+	laaaaaargeArray[0] = 5.0;
+}
 void stackSize()
 {
 	cout << "Heute sterbe ich den Tod des endlichen Stacks." << endl << endl;
 
-
-	double laaaaaargeArray[4000000];
-
+	largeStack();
 
 	cout << "Wie, ich lebe noch?" << endl;
 }
