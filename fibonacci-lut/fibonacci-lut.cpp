@@ -13,7 +13,7 @@ class LUT {
 public:
 	LUT(unsigned int noe); //noe: number_of_elements
 	~LUT();
-	void get_fibo_series(); //prints the whole fibo series
+	void get_fibo_series(); //prints the whole fibo series !!get->print ersetzen oder array zurückgeben
 	unsigned int get_fibo_at(int n); //prints specific fibo, the nth fibo
 
 
@@ -25,10 +25,12 @@ LUT::LUT(unsigned int noe) {
 	fibonacci.push_back(0);
 	fibonacci.push_back(1);
 
-	for (unsigned int i=2; 2<noe; ++i) {
-		static unsigned int n_minus = 0;
-		static unsigned int n = 1;
-		static unsigned int n_plus;
+	unsigned int n_minus = 0;
+	unsigned int n = 1;
+	unsigned int n_plus;
+
+	for (unsigned int i=2; i<noe; ++i) {
+
 		n_plus = n_minus + n;
 		fibonacci.push_back(n_plus);
 		n_minus = n;
@@ -54,11 +56,8 @@ unsigned int LUT::get_fibo_at(int n) {
 
 
 int main() {
-	std::cout << "bla";
-	LUT bla(3);
 
-	//LUT *blubb = new LUT(3);
-	std::cout << "blubb";
-	//std::cout << blubb->get_fibo_at(3);
+	LUT *blubb = new LUT(100);
+	std::cout << blubb->get_fibo_at(56);
 
 }
