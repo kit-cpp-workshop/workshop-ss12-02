@@ -6,11 +6,11 @@ Der zweite Workshoptermin wird sich auch noch den Grundlagen widmen: »Dinge« u
 
 ### Folien zum Vortrag
 
-Die Vortragsfolien stehen BALD als [PDF](https://github.com/downloads/kit-cpp-workshop/workshop-ss12-02/slides.pdf) zum Download bereit. Außerdem liegt der LaTeX-Quellcode zu den Folien im Ordner `slides`.
+Die Vortragsfolien stehen als [PDF](https://github.com/downloads/kit-cpp-workshop/workshop-ss12-02/slides.pdf) zum Download bereit. Außerdem liegt der LaTeX-Quellcode zu den Folien im Ordner `slides`.
 
 ###Screencast
 
-Ein Screencast des Vortrags wird nach dem Workshop an dieser Stelle verlinkt.
+Eine (vorläufige) Aufzeichnung des Vortrags steht zum [Download](http://ubuntuone.com/3jd4VvjcWsOzSFA3O5zMz0) bereit. Durch die Verwendung eines anderen Mikrofons ist der Klang besser, dafür sind Fragen/Anmerkungen der Zuhörer (fast) nicht zu verstehen. Die Endfassung des Vortrags wird daher mit Untertiteln versehen.
 
 ## Aufgaben
 
