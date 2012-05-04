@@ -6,7 +6,7 @@ Der zweite Workshoptermin wird sich auch noch den Grundlagen widmen: »Dinge« u
 
 ### Folien zum Vortrag
 
-Die Vortragsfolien stehen BALD als [PDF](URL) zum Download bereit. Außerdem liegt der LaTeX-Quellcode zu den Folien im Ordner `slides`.
+Die Vortragsfolien stehen BALD als [PDF](https://github.com/downloads/kit-cpp-workshop/workshop-ss12-02/slides.pdf) zum Download bereit. Außerdem liegt der LaTeX-Quellcode zu den Folien im Ordner `slides`.
 
 ###Screencast
 
