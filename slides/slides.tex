@@ -85,45 +85,9 @@
 \tableofcontents
 \end{frame}
 
-\section{Objektorientierte Programmierung}
-\begin{frame}
-    \frametitle{Structures}
-    \begin{block}{structs}
-    Ein \texttt{struct} ist eine Zusammenfassung mehrerer Objekte zu einem größeren.
-    Zum Beispiel könnte man ein \texttt{struct} "`Quader"' erstellen, welches drei Fließkommazahlen beinhaltet.
-    \end{block}
-    \begin{block}{Instanzen}
-    Eine solche \texttt{struct} ist lediglich eine abstrakte Beschreibung des Objekts; man arbeitet schließlich mit sogenannten \emph{Instanzen} des Objekts. Beispiel Quader: Die Structure an sich beschreibt das abstrakte Objekt, die Instanz einen konkreten Quader ("`der Quader auf meinem Tisch"').
-    \end{block}
-\end{frame}
-\begin{frame}
-    \frametitle{Beispiel für eine Structure}
-    \vspace{0.7cm}
-    \includegraphics[width=15cm]{example_code/box.pdf}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Klassen}
-    \begin{block}{Klassen}
-    Eine \texttt{class} ist eine \texttt{struct}, die zusätzlich zu Daten noch Funktionen enthält, die auf diesen Daten operieren.
-    \end{block}
-    \begin{block}{Konstruktor und Destruktor}
-    Eine Klasse hat zwei besondere Funktionen, den Konstruktor und den Destruktor; der Konstruktor wird aufgerufen, wenn eine neue Instanz der Klasse erstellt wird, und der Destruktor, wenn die Instanz wieder gelöscht wird. Der Konstruktor heißt \texttt{klassenname}, der Destruktor \texttt{\~{}klassenname}.
-    \end{block}
-\end{frame}
-\begin{frame}
-    \frametitle{Beispiel für eine Klasse}
-    \vspace{0.7cm}
-    \includegraphics[width=8.7cm]{example_code/box2.pdf}
-\end{frame}
-\begin{frame}
-    \frametitle{Etwas anderes Beispiel für eine Klasse}
-    \includegraphics[width=10.0cm]{example_code/box3.pdf}
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % ADD OWN SECTIONS HERE %
 %%%%%%%%%%%%%%%%%%%%%%%%%
-%\include{cpp} % includes cpp.tex
+\include{oop}
 
 \end{document}
