@@ -29,6 +29,14 @@ Mittels einer Methode soll aus einem Objekt auf eine Fibonnaci-Zahl der LUT zuge
 Spoiler:
 Verwende ein Array auf dem Heap und verwalte es im ctor und dtor.
 
+Anmerkungen:
+Die Fibonacci-Zahlen werden recht schnell größer als die größte Zahl,
+die man in einem Integer speichern kann. Wenn ihr merkwürdige negative
+Zahlen in euerer Liste habt, dann liegt das daran.
+Bonuspunkte gibt's, wenn die Zahlen erst dann berechnet werden, wenn
+das auch wirklich nötig ist (Hinweis: Überlege Dir, wie Du speichern
+kannst, dass eine bestimmte Zahl noch nicht berechnet wurde).
+
 
 ### Aufgabe 2: Ringpuffer
 
@@ -36,8 +44,14 @@ Ein Ringpuffer ist eine Datenstruktur, in der endlich viele Daten gespeichert we
 Siehe [wikipedia](https://de.wikipedia.org/wiki/Ringpuffer#Ringpuffer)
 
 Schreibe eine Ringpuffer-Klasse, dessen Instanzen `double`s speichern können. Ein neues Datum (ein neuer `double`) soll hinzugefügt werden können (push), die vorhandenen Elemente in entgegengesetzter Reihenfolge zum Einfügen gelöscht (pop). 
+pop() soll immer das älteste Element, welches noch nicht zurückgegeben
+wurde, zurückgeben (wenn man also zweimal pop() macht, sollte man das
+zweitälteste bekommen etc.).
+push() soll einen bool zurückgeben: true falls ein Element erfolgreich
+eingefügt wurde, und false falls das Einfügen fehlgeschlagen ist, zum
+Beispiel weil der Buffer voll ist. Es sollen also keine Elemente
+überschrieben werden, auf die noch nicht mit pop() zugegriffen wurde.
 Man soll mittels einer Methode auf jedes Element des Ringpuffers auslesen können (ob du überprüfst, ob dieses Element noch nicht beschrieben wurde, bleibt dir überlassen).
 
-
 Spoiler:
-Verwende die Fibonacci-LUT als Grundgerüst. Dann benötigst du nur noch einen zusätzlichen Pointer (und natürlich andere Methoden/Funktionen).
+Es kann sich anbieten, die Fibonacci-LUT als Grundgerüst zu verwenden. Dann benötigst du (je nach Implementierung) nur noch einen zusätzlichen Pointer (und natürlich andere Methoden/Funktionen).
