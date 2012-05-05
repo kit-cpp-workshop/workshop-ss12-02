@@ -16,9 +16,14 @@ private:
 
 FibonacciLUT::FibonacciLUT(int NumberOfNumbers):SizeOfLUT(NumberOfNumbers) {
 	if(SizeOfLUT < 1) {
-		cout << "zu kleine LUT" << endl;
-		// irgendwie sinnvoll abbrechen.
+		cout << "zu kleine LUT, daher auf 10 gesetzt." << endl;
+		// irgendwie sinnvoll abbrechen, alternativ Startwert setzen.
+		SizeOfLUT=10;
 
+	}
+	if(SizeOfLUT>95) { // Wert durch Probieren ermittelt
+		cout << "LUT zu groß, daher auf 95 gesetzt." << endl;
+		SizeOfLUT=95;
 	}
 	FibonacciArray = new long[SizeOfLUT];
 
