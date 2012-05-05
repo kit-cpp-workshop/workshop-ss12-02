@@ -45,6 +45,7 @@ void FibonacciLUT::GenerateNumbers(int n) {
 	for(int i=LargestGeneratedNumber+1; i<=n; i++) {
 		FibonacciArray[i] = FibonacciArray[i-1] + FibonacciArray[i-2];
 	}
+	LargestGeneratedNumber = n;
 }
 
 FibonacciLUT::~FibonacciLUT() {
