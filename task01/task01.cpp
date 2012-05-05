@@ -6,9 +6,9 @@ class FibonacciLUT {
 public:
 	FibonacciLUT(int NumberOfNumbers);
 	~FibonacciLUT();
-	int GetFibonacciNumber(int n);
+	long GetFibonacciNumber(int n);
 private:
-	int* FibonacciArray;
+	long* FibonacciArray;
 	int SizeOfLUT;
 	int LargestGeneratedNumber;
 	void GenerateNumbers(int ToNumber);
@@ -20,7 +20,7 @@ FibonacciLUT::FibonacciLUT(int NumberOfNumbers):SizeOfLUT(NumberOfNumbers) {
 		// irgendwie sinnvoll abbrechen.
 
 	}
-	FibonacciArray = new int[SizeOfLUT];
+	FibonacciArray = new long[SizeOfLUT];
 
 	FibonacciArray[0]=0;
 	LargestGeneratedNumber=0;
@@ -46,7 +46,7 @@ FibonacciLUT::~FibonacciLUT() {
 	delete[] FibonacciArray;
 }
 
-int FibonacciLUT::GetFibonacciNumber(int n) {
+long FibonacciLUT::GetFibonacciNumber(int n) {
 	if((n<0)|(n>=SizeOfLUT)) {
 		cout << "Out of Range!" << endl;
 		return -1;
