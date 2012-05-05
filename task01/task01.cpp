@@ -49,7 +49,7 @@ FibonacciLUT::~FibonacciLUT() {
 int FibonacciLUT::GetFibonacciNumber(int n) {
 	if((n<0)|(n>SizeOfLUT)) {
 		cout << "Out of Range!" << endl;
-		return 0;
+		return -1;
 	} else {
 		if(n > LargestGeneratedNumber)
 			GenerateNumbers(n);
