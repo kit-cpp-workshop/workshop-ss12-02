@@ -25,7 +25,7 @@ FibonacciLUT::FibonacciLUT(int NumberOfNumbers):SizeOfLUT(NumberOfNumbers) {
 	FibonacciArray[0]=0;
 	LargestGeneratedNumber=0;
 
-	if(SizeOfLUT>=1) {
+	if(SizeOfLUT>=2) {
 		FibonacciArray[1]=1;
 		LargestGeneratedNumber=1;
 	}
