@@ -43,15 +43,15 @@ kannst, dass eine bestimmte Zahl noch nicht berechnet wurde).
 Ein Ringpuffer ist eine Datenstruktur, in der endlich viele Daten gespeichert werden können. Wird versucht, mehr Daten hineinzuschreiben, so werden alte Daten überschrieben.
 Siehe [wikipedia](https://de.wikipedia.org/wiki/Ringpuffer#Ringpuffer)
 
-Schreibe eine Ringpuffer-Klasse, dessen Instanzen `double`s speichern können. Ein neues Datum (ein neuer `double`) soll hinzugefügt werden können (push), die vorhandenen Elemente in entgegengesetzter Reihenfolge zum Einfügen gelöscht (pop). 
-pop() soll immer das älteste Element, welches noch nicht zurückgegeben
-wurde, zurückgeben (wenn man also zweimal pop() macht, sollte man das
+Schreibe eine Ringpuffer-Klasse, dessen Instanzen `double`s speichern können. Ein neues Datum (ein neuer `double`) soll hinzugefügt werden können (`push`), die vorhandenen Elemente in entgegengesetzter Reihenfolge zum Einfügen gelöscht (`pop`). 
+`pop` soll immer das älteste Element, welches noch nicht zurückgegeben
+wurde, zurückgeben (wenn man also zweimal `pop` macht, sollte man das
 zweitälteste bekommen etc.).
-push() soll einen bool zurückgeben: true falls ein Element erfolgreich
+`push` soll einen bool zurückgeben: true falls ein Element erfolgreich
 eingefügt wurde, und false falls das Einfügen fehlgeschlagen ist, zum
 Beispiel weil der Buffer voll ist. Es sollen also keine Elemente
-überschrieben werden, auf die noch nicht mit pop() zugegriffen wurde.
-Man soll mittels einer Methode auf jedes Element des Ringpuffers auslesen können (ob du überprüfst, ob dieses Element noch nicht beschrieben wurde, bleibt dir überlassen).
+überschrieben werden, auf die noch nicht mit `pop` zugegriffen wurde.
+Man soll mittels einer Methode jedes Element des Ringpuffers auslesen können (ob du überprüfst, ob dieses Element noch nicht beschrieben wurde, bleibt dir überlassen).
 
 Spoiler:
-Es kann sich anbieten, die Fibonacci-LUT als Grundgerüst zu verwenden. Dann benötigst du (je nach Implementierung) nur noch einen zusätzlichen Pointer (und natürlich andere Methoden/Funktionen).
+Es kann sich anbieten, die Fibonacci-LUT als Grundgerüst zu verwenden. Dann benötigst du (je nach Implementierung) nur noch zwei zusätzlichen Pointer (und natürlich andere Methoden/Funktionen).
