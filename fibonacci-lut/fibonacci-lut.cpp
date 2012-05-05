@@ -23,10 +23,7 @@ private:
 };
 
 FibonacciLookupTable::FibonacciLookupTable(unsigned int number_of_elements) {
-
 	first_fibo_ptr = new unsigned int[number_of_elements];
-
-
 	unsigned int n_minus = 0;
 	unsigned int n = 1;
 	unsigned int n_plus;
@@ -53,14 +50,15 @@ void FibonacciLookupTable::get_fibo_series() {
 }
 
 unsigned int FibonacciLookupTable::get_fibo_at(int n) {
-	//unsigned int value = first_fibo_ptr;
-	unsigned int value = (first_fibo_ptr + n);
-	return value;
+	return  (*(first_fibo_ptr + n));
 }
 
 
 
 int main() {
-	FibonacciLookupTable testing(10);
-	std::cout << testing.get_fibo_at(3);
+	FibonacciLookupTable LUT(10);
+	unsigned int an_element;
+	std::cout << "Das wievielte Element?: ";
+	std::cin >> an_element;
+	std::cout << LUT.get_fibo_at(an_element);
 }
