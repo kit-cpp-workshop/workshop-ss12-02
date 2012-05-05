@@ -67,8 +67,9 @@ int main()
 	FibonacciLUT LUT(n);
 
 	int input=1;
+	cout << "-1 zum Beenden." << endl;
 
-	while(input!=0) {
+	while(input!=-1) {
 		cout << "Fibonacci number? " << flush;
 		cin >> input;
 		cout << LUT.GetFibonacciNumber(input) << endl;
