@@ -7,37 +7,26 @@
 
 
 #include <iostream>
-#include <vector>
+#include <cmath>
 
 class FibonacciLookupTable {
 public:
 	FibonacciLookupTable(unsigned int number_of_elements);
 	~FibonacciLookupTable();
-
-	void get_fibo_series(); //prints the whole fibo series !!get->print ersetzen oder array zurückgeben
 	unsigned int get_fibo_at(int n); //prints specific fibo, the nth fibo
+
+	//mehr funktionalität
+	void calculate_fibo(int index); //kein unsigned int, compiler meckert dann wegen pow()
+	void get_fibo_series(); //prints the whole fibo series !!get->print ersetzen oder array zurückgeben
 
 
 private:
 	unsigned int *first_fibo_ptr;
+
 };
 
 FibonacciLookupTable::FibonacciLookupTable(unsigned int number_of_elements) {
 	first_fibo_ptr = new unsigned int[number_of_elements];
-	unsigned int n_minus = 0;
-	unsigned int n = 1;
-	unsigned int n_plus;
-
-	*first_fibo_ptr = 0;
-	*(first_fibo_ptr + 1) = 1;
-
-	for (unsigned int i=2; i<number_of_elements; ++i) {
-
-		n_plus = n_minus + n;
-		*(first_fibo_ptr + i) = n_plus;
-		n_minus = n;
-		n = n_plus;
-	}
 }
 
 FibonacciLookupTable::~FibonacciLookupTable() {
@@ -50,10 +39,18 @@ void FibonacciLookupTable::get_fibo_series() {
 }
 
 unsigned int FibonacciLookupTable::get_fibo_at(int n) {
+	calculate_fibo(n);
 	return  (*(first_fibo_ptr + n));
 }
 
+void FibonacciLookupTable::calculate_fibo(int index) {
+	//Uses Moivre-Binet
+	*(first_fibo_ptr + index) = std::floor(1.0/std::sqrt(5) *
+			(std::pow((0.5*(1+std::sqrt(5))),index) - std::pow((0.5*(1-std::sqrt(5))),index)));
 
+	//Optimization: approximation for big numbers
+
+}
 
 int main() {
 	FibonacciLookupTable LUT(10);
