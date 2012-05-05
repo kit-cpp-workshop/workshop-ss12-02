@@ -8,6 +8,7 @@ public:
 	~Ringpuffer();
 	double pull();
 	bool push(double Data);
+	double GetBufferValue(int Index);
 private:
 	double* Buffer;
 	int BufferSize;
@@ -46,6 +47,11 @@ double Ringpuffer::pull() {
 	} else
 		cout << "Empty Buffer, nothing to read." << endl;
 	return ret;
+}
+
+double Ringpuffer::GetBufferValue(int Index) {
+	return Buffer[Index]; // ohne Check
+
 }
 
 int main() {
