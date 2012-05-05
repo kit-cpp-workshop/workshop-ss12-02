@@ -9,55 +9,58 @@
 #include <iostream>
 #include <vector>
 
-class LUT {
+class FibonacciLookupTable {
 public:
-	LUT(unsigned int noe); //noe: number_of_elements
-	~LUT();
+	FibonacciLookupTable(unsigned int number_of_elements);
+	~FibonacciLookupTable();
+
 	void get_fibo_series(); //prints the whole fibo series !!get->print ersetzen oder array zurückgeben
 	unsigned int get_fibo_at(int n); //prints specific fibo, the nth fibo
 
 
 private:
-	std::vector<unsigned int> fibonacci;
+	unsigned int *first_fibo_ptr;
 };
 
-LUT::LUT(unsigned int noe) {
-	fibonacci.push_back(0);
-	fibonacci.push_back(1);
+FibonacciLookupTable::FibonacciLookupTable(unsigned int number_of_elements) {
+
+	first_fibo_ptr = new unsigned int[number_of_elements];
+
 
 	unsigned int n_minus = 0;
 	unsigned int n = 1;
 	unsigned int n_plus;
 
-	for (unsigned int i=2; i<noe; ++i) {
+	*first_fibo_ptr = 0;
+	*(first_fibo_ptr + 1) = 1;
+
+	for (unsigned int i=2; i<number_of_elements; ++i) {
 
 		n_plus = n_minus + n;
-		fibonacci.push_back(n_plus);
+		*(first_fibo_ptr + i) = n_plus;
 		n_minus = n;
 		n = n_plus;
 	}
 }
 
-LUT::~LUT() {
-	std::cout << "bye lut";
+FibonacciLookupTable::~FibonacciLookupTable() {
+	delete[] first_fibo_ptr;
+	first_fibo_ptr = 0;
 }
 
-void LUT::get_fibo_series() {
-	for (unsigned int i=0; i<fibonacci.size(); ++i) {
-		std::cout << fibonacci.at(i) << " ";
-	}
-	std::cout << std::endl;
+void FibonacciLookupTable::get_fibo_series() {
+
 }
 
-unsigned int LUT::get_fibo_at(int n) {
-	return fibonacci.at(n);
+unsigned int FibonacciLookupTable::get_fibo_at(int n) {
+	//unsigned int value = first_fibo_ptr;
+	unsigned int value = (first_fibo_ptr + n);
+	return value;
 }
 
 
 
 int main() {
-
-	LUT *blubb = new LUT(100);
-	std::cout << blubb->get_fibo_at(56);
-
+	FibonacciLookupTable testing(10);
+	std::cout << testing.get_fibo_at(3);
 }
