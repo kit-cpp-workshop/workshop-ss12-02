@@ -15,8 +15,8 @@ class FibonacciLookupTable {
 public:
 	FibonacciLookupTable(unsigned int number_of_elements);
 	~FibonacciLookupTable();
-	unsigned int get_fibo_at(int n); // returns the fibo with index n
-	void calculate_fibo(int index); //kein unsigned int, compiler meckert dann wegen pow()
+	unsigned int get_fibo_at(unsigned int n); // returns the fibo with index n
+	void calculate_fibo(unsigned int index); //kein unsigned int, compiler meckert dann wegen pow()
 									   //was tun auser auf unsigned int verzichten?
 
 
@@ -37,22 +37,23 @@ FibonacciLookupTable::FibonacciLookupTable(unsigned int number_of_elements) {
 }
 
 FibonacciLookupTable::~FibonacciLookupTable() {
+	//Clean up the Heap
 	delete[] first_fibo_ptr;
 	first_fibo_ptr = 0;
 	delete[] checker_ptr;
 	checker_ptr = 0;
 }
 
-unsigned int FibonacciLookupTable::get_fibo_at(int n) {
+unsigned int FibonacciLookupTable::get_fibo_at(unsigned int n) {
 	calculate_fibo(n);
 	return  (*(first_fibo_ptr + n));
 }
 
-void FibonacciLookupTable::calculate_fibo(int index) {
+void FibonacciLookupTable::calculate_fibo(unsigned int index) {
 	if (*(checker_ptr + index) == false) {
 		//Uses Moivre-Binet
 		*(first_fibo_ptr + index) = std::floor(1.0/std::sqrt(5) *
-			(std::pow((0.5*(1+std::sqrt(5))),index) - std::pow((0.5*(1-std::sqrt(5))),index)));
+			(std::pow((0.5*(1+std::sqrt(5))),(int)index) - std::pow((0.5*(1-std::sqrt(5))),(int)index)));
 		*(checker_ptr + index) = true;
 		std::cout << "\nWert berechnet und abgespeichert.\n";
 	} else {
