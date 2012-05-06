@@ -3,9 +3,7 @@
  *
  *  Created on: 05.05.2012
  *      Author: prime
- *
- *      Fragen in den Kommentaren
- */
+ * */
 
 
 #include <iostream>
@@ -16,21 +14,18 @@ public:
 	FibonacciLookupTable(unsigned int number_of_elements);
 	~FibonacciLookupTable();
 	unsigned int get_fibo_at(unsigned int n); // returns the fibo with index n
-	void calculate_fibo(unsigned int index); //kein unsigned int, compiler meckert dann wegen pow()
-									   //was tun auser auf unsigned int verzichten?
+	void calculate_fibo(unsigned int index); //calculates fibo with given index
 
 
 private:
-	unsigned int *first_fibo_ptr;
+	unsigned int *first_fibo_ptr; //points to the first element of array on heap
 	bool *checker_ptr; //checks if already calculated
 
 };
 
 FibonacciLookupTable::FibonacciLookupTable(unsigned int number_of_elements) {
 	first_fibo_ptr = new unsigned int[number_of_elements];
-	checker_ptr = new bool[number_of_elements]; //Besserer Ansatz, zweidim array?
-	//Wie setze ich hier elegant das Ganze array auf false?
-	//bool[number_of_elements] = {false} will er hier nicht
+	checker_ptr = new bool[number_of_elements];
 	for (unsigned int i=0; i<number_of_elements; ++i) {
 		*(checker_ptr + i) = false;
 	}
@@ -46,15 +41,15 @@ FibonacciLookupTable::~FibonacciLookupTable() {
 
 unsigned int FibonacciLookupTable::get_fibo_at(unsigned int n) {
 	calculate_fibo(n);
-	return  (*(first_fibo_ptr + n));
+	return  (*(first_fibo_ptr + n-1));
 }
 
 void FibonacciLookupTable::calculate_fibo(unsigned int index) {
-	if (*(checker_ptr + index) == false) {
+	if (*(checker_ptr + (index-1)) == false) {
 		//Uses Moivre-Binet
-		*(first_fibo_ptr + index) = std::floor(1.0/std::sqrt(5) *
-			(std::pow((0.5*(1+std::sqrt(5))),(int)index) - std::pow((0.5*(1-std::sqrt(5))),(int)index)));
-		*(checker_ptr + index) = true;
+		*(first_fibo_ptr + (index-1)) = (1.0/std::sqrt(5) * //kein std::floor bei ungenäherter formel
+			(std::pow((0.5*(1+std::sqrt(5))),(int)(index-1)) - std::pow((0.5*(1-std::sqrt(5))),(int)(index-1))));
+		*(checker_ptr + (index-1)) = true;
 		std::cout << "\nWert berechnet und abgespeichert.\n";
 	} else {
 		std::cout << "\nWert bereits berechnet.\n";
