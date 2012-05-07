@@ -15,10 +15,16 @@ public:
     bool push(double data);
     // Get the oldest unread value:
     double pop();
+    
+    // Print out the whole buffer: (debug)
+    void debug_print();
+    
+    size_t filling_level();
      
 private:
     double* buffer;
-    size_t in;
-    size_t out;
+    double* in;
+    double* out;
     size_t size;
+    size_t filled;
 };
