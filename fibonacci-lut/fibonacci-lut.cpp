@@ -47,8 +47,8 @@ unsigned int FibonacciLookupTable::get_fibo_at(unsigned int n) {
 void FibonacciLookupTable::calculate_fibo(unsigned int index) {
 	if (*(checker_ptr + (index-1)) == false) {
 		//Uses Moivre-Binet
-		*(first_fibo_ptr + (index-1)) = (1.0/std::sqrt(5) * //kein std::floor bei ungenäherter formel
-			(std::pow((0.5*(1+std::sqrt(5))),(int)(index-1)) - std::pow((0.5*(1-std::sqrt(5))),(int)(index-1))));
+		*(first_fibo_ptr + (index-1)) = (1.0/std::sqrt(5.0) * //kein std::floor bei ungenäherter formel
+			(std::pow((0.5*(1+std::sqrt(5.0))),(int)(index-1)) - std::pow((0.5*(1-std::sqrt(5.0))),(int)(index-1))));
 		*(checker_ptr + (index-1)) = true;
 		std::cout << "\nWert berechnet und abgespeichert.\n";
 	} else {
