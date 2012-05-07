@@ -50,7 +50,9 @@ double Ringpuffer::pull() {
 }
 
 double Ringpuffer::GetBufferValue(int Index) {
-	return Buffer[Index]; // ohne Check
+	int i = (ReadPosition + Index) % BufferSize;
+
+	return Buffer[i]; // ohne Check
 
 }
 
@@ -63,7 +65,7 @@ int main() {
 
 	char ctrlInput = 0;
 	while(true) {
-		cout << "[r]ead, [w]rite or [q]uit? " << flush;
+		cout << "[r]ead, [w]rite, read [b]uffer element or [q]uit? " << flush;
 		cin >> ctrlInput;
 		switch(ctrlInput) {
 		case 'w':
@@ -80,6 +82,14 @@ int main() {
 		case 'r':
 			cout << "Buffer value: " << Buffer.pull() << endl;
 			break;
+		case 'b':
+			{
+			double in = 0;
+			cout << "Buffer index (0=oldest): " << flush;
+			cin >> in;
+			cout << "Buffer[" << in << "] = " << Buffer.GetBufferValue(in) << endl;
+			break;
+			}
 		case 'q':
 			return 0;
 		}
