@@ -19,15 +19,14 @@ public:
 
 private:
 	unsigned int *first_fibo_ptr; //points to the first element of array on heap
-	bool *checker_ptr; //checks if already calculated
+	//bool *checker_ptr; //checks if already calculated
 
 };
 
 FibonacciLookupTable::FibonacciLookupTable(unsigned int number_of_elements) {
 	first_fibo_ptr = new unsigned int[number_of_elements];
-	checker_ptr = new bool[number_of_elements];
 	for (unsigned int i=0; i<number_of_elements; ++i) {
-		*(checker_ptr + i) = false;
+		first_fibo_ptr[i] = 0;
 	}
 }
 
@@ -35,27 +34,24 @@ FibonacciLookupTable::~FibonacciLookupTable() {
 	//Clean up the Heap
 	delete[] first_fibo_ptr;
 	first_fibo_ptr = 0;
-	delete[] checker_ptr;
-	checker_ptr = 0;
 }
 
 unsigned int FibonacciLookupTable::get_fibo_at(unsigned int n) {
 	calculate_fibo(n);
-	return  (*(first_fibo_ptr + n-1));
+	return  (first_fibo_ptr[n-1]);
 }
 
 void FibonacciLookupTable::calculate_fibo(unsigned int index) {
-	if (*(checker_ptr + (index-1)) == false) {
+	if (first_fibo_ptr[index-1] == 0) {
 		//Uses Moivre-Binet
-		*(first_fibo_ptr + (index-1)) = (1.0/std::sqrt(5.0) * //kein std::floor bei ungenäherter formel
+		first_fibo_ptr[index-1] = (1.0/std::sqrt(5.0) * //kein std::floor bei ungenäherter formel
 			(std::pow((0.5*(1+std::sqrt(5.0))),(double)(index-1)) - std::pow((0.5*(1-std::sqrt(5.0))),(double)(index-1))));
-		*(checker_ptr + (index-1)) = true;
 		std::cout << "\nWert berechnet und abgespeichert.\n";
 	} else {
 		std::cout << "\nWert bereits berechnet.\n";
 	}
-	//Optimization: approximation for big numbers
 
+	//Optimization: approximation for big numbers
 }
 
 int main() {
