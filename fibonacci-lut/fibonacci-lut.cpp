@@ -63,7 +63,10 @@ int main() {
 	unsigned int x;
 	std::cout << "Das wievielte Element?: ";
 	std::cin >> x;
-	std::cout << LUT.get_fibo_at(x);
-	std::cout << LUT.get_fibo_at(x);
-
+	if (x==0) {
+		std::cout "Fibonacci Zahlen fangen mit dem Index 1 an.";
+	} else {
+		std::cout << LUT.get_fibo_at(x);
+		std::cout << LUT.get_fibo_at(x);
+	}
 }
