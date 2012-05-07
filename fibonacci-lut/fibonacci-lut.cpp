@@ -21,7 +21,7 @@ private:
 };
 
 FibonacciLookupTable::FibonacciLookupTable(unsigned int number_of_elements) {
-	// Puts the LUP (Array) on the Heap
+	// Puts the LUT (Array) on the Heap
 	first_fibo_ptr = new unsigned int[number_of_elements];
 	for (unsigned int i=0; i<number_of_elements; ++i) {
 		first_fibo_ptr[i] = 0;
@@ -59,6 +59,8 @@ int main() {
 	std::cin >> x;
 	if (x==0) {
 		std::cout << "Fibonacci Zahlen fangen mit dem Index 1 an.";
+	} else if (x>10) {
+		std::cout << "Nicht in der LUT vorhanden.";
 	} else {
 		std::cout << LUT.get_fibo_at(x);
 		std::cout << LUT.get_fibo_at(x);
