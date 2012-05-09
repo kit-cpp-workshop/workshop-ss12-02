@@ -75,10 +75,10 @@ int main()
 	int input=1;
 	cout << "-1 zum Beenden." << endl;
 
-	while(input!=-1) {
-		cout << "Fibonacci number? " << flush;
-		cin >> input;
+	cout << "Fibonacci number? " << flush;
+	while(cin >> input) {
 		cout << LUT.GetFibonacciNumber(input) << endl;
+		cout << "Fibonacci number? " << flush;
 	}
 
 
