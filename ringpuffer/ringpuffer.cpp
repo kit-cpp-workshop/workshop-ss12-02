@@ -36,10 +36,13 @@ Ringpuffer::Ringpuffer(unsigned int number_of_elements) {
 	}
 }
 
+//Gibt es hier wieder was besseres wie 2 arrays?
 Ringpuffer::~Ringpuffer() {
 	//clean heap
 	delete[] first_memory;
 	first_memory = 0;
+	delete[] first_check;
+	first_check = 0;
 }
 
 bool Ringpuffer::push(double date) {
@@ -50,10 +53,10 @@ bool Ringpuffer::push(double date) {
 		if (input == size) {
 			input = 0;
 		}
-		std::cout << "##gespeichert";
+		std::cout << "Wert gespeichert" << std::endl;
 		return true; //worked
 	} else {
-		std::cout << "voll";
+		std::cout << "Puffer voll" << std::endl;
 		return false; //puffer full or other things happened
 	}
 }
@@ -70,30 +73,29 @@ double Ringpuffer::pop() {
 
 void Ringpuffer::print_puffer() {
 	for (unsigned int i=0; i<size; ++i) {
-		std::cout << first_memory[input+i] << " - ";
+		std::cout << first_memory[output+i] << std::endl;
 	}
 }
 
 //Nur Testcode ab hier...
 int main() {
-	Ringpuffer puffer(5);
-	double temp;
+	Ringpuffer puffer(3);
+	//double temp;
 
-	for (unsigned int i=0; i<6; ++i) {
-		std::cout << "##double speichern:";
-		std::cin >> temp;
-		puffer.push(temp);
+	for (unsigned int i=0; i<4; ++i) {
+		//std::cout << "##double speichern: ";
+		//std::cin >> temp;
+		puffer.push(i);
 	}
 
 	puffer.print_puffer();
 
 	puffer.pop();
-	puffer.pop();
 
-	for (unsigned int i=0; i<6; ++i) {
-		std::cout << "##double speichern:";
-		std::cin >> temp;
-		puffer.push(temp);
+	for (unsigned int i=4; i<7; ++i) {
+		//std::cout << "##double speichern: ";
+		//std::cin >> temp;
+		puffer.push(i);
 	}
 
 	puffer.print_puffer();
