@@ -13,7 +13,8 @@ public:
 	~Ringpuffer();
 	bool push(double date); //add new date, return if it worked, checker=false, error if old element still in puffer
 	double pop(); //get date, checker = true
-
+	void print_puffer(); //printed alle daten im Puffer, beginnend mit ältesten element (fifo)
+	//TODO: Array als Rückgabewert
 private:
 	double *first_memory; //points to the first empty element in array
 	bool *first_check;
@@ -28,7 +29,8 @@ Ringpuffer::Ringpuffer(unsigned int number_of_elements) {
 	size = number_of_elements;
 
 	first_memory = new double[number_of_elements];
-	for (unsigned int i = 0; i <= size; ++i) {
+	first_check = new bool[number_of_elements];
+	for (unsigned int i=0; i<size; ++i) {
 		first_memory[i] = 0;
 		first_check[i] = true;
 	}
@@ -48,8 +50,10 @@ bool Ringpuffer::push(double date) {
 		if (input == size) {
 			input = 0;
 		}
+		std::cout << "##gespeichert";
 		return true; //worked
 	} else {
+		std::cout << "voll";
 		return false; //puffer full or other things happened
 	}
 }
@@ -64,30 +68,36 @@ double Ringpuffer::pop() {
 	return temp;
 }
 
+void Ringpuffer::print_puffer() {
+	for (unsigned int i=0; i<size; ++i) {
+		std::cout << first_memory[input+i] << " - ";
+	}
+}
 
+//Nur Testcode ab hier...
 int main() {
-	std::cout << "##";
 	Ringpuffer puffer(5);
-	std::cout << "##";
 	double temp;
-	std::cout << "##";
+
 	for (unsigned int i=0; i<6; ++i) {
-		std::cout << "double speichern:";
+		std::cout << "##double speichern:";
 		std::cin >> temp;
 		puffer.push(temp);
 	}
+
+	puffer.print_puffer();
 
 	puffer.pop();
 	puffer.pop();
 
 	for (unsigned int i=0; i<6; ++i) {
-		std::cout << "double speichern:";
+		std::cout << "##double speichern:";
 		std::cin >> temp;
 		puffer.push(temp);
 	}
 
+	puffer.print_puffer();
 
-	return 0;
 }
 
 
