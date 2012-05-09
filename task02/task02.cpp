@@ -5,24 +5,24 @@ using namespace std;
 class Ring
 {
 public:
-	Ring(int n);
+	Ring(unsigned int n);
 	~Ring();
 	double pop();
 	bool push(double d);
 private:
-	int nextIndex;
-	int size;
+	unsigned int nextIndex;
+	unsigned int size;
 	double* lut;
-	int beginning;
-	bool empty;
+	unsigned int beginning;
+	bool mayBeEmpty;
 };
 
-Ring::Ring(int n) {
+Ring::Ring(unsigned int n) {
 	nextIndex = 0;
 	beginning = 0;
 	lut = new double[n];
 	size = n;
-	empty = true;
+	mayBeEmpty = true;
 }
 
 Ring::~Ring() {
@@ -31,10 +31,10 @@ Ring::~Ring() {
 }
 
 double Ring::pop() {
-	if (nextIndex == beginning && empty) {
+	if (nextIndex == beginning && mayBeEmpty) {
 		return 0;
 	} else {
-		empty = true;
+		mayBeEmpty = true;
 		double r = lut[beginning];
 		beginning++;
 		if (beginning == size) {
@@ -45,10 +45,10 @@ double Ring::pop() {
 }
 
 bool Ring::push(double d) {
-	if (nextIndex == beginning && !empty) {
+	if (nextIndex == beginning && !mayBeEmpty) {
 		return false;
 	} else {
-		empty = false;
+		mayBeEmpty = false;
 		lut[nextIndex] = d;
 		nextIndex++;
 		if (nextIndex == size) {
@@ -60,7 +60,7 @@ bool Ring::push(double d) {
 
 int main()
 {
-	int n = 0;
+	unsigned int n = 0;
 	cout << "How many numbers? " << flush;
 	cin >> n;
 
