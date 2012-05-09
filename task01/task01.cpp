@@ -28,6 +28,7 @@ int FibLUT::getFib(int n) {
 	if(n >= nextIndex) {
 		for (int i = nextIndex; i <= n; i++) {
 			lut[i] = fib(i);
+			nextIndex++;
 		}
 	}
 	return lut[n];
