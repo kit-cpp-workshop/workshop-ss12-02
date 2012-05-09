@@ -12,7 +12,7 @@ public:
 private:
 	unsigned int nextIndex;
 	unsigned int size;
-	double* lut;
+	double* ring;
 	unsigned int beginning;
 	bool mayBeEmpty;
 };
@@ -20,14 +20,14 @@ private:
 Ring::Ring(unsigned int n) {
 	nextIndex = 0;
 	beginning = 0;
-	lut = new double[n];
+	ring = new double[n];
 	size = n;
 	mayBeEmpty = true;
 }
 
 Ring::~Ring() {
-	delete[] lut;
-	lut = 0;
+	delete[] ring;
+	ring = 0;
 }
 
 double Ring::pop() {
@@ -35,7 +35,7 @@ double Ring::pop() {
 		return 0;
 	} else {
 		mayBeEmpty = true;
-		double r = lut[beginning];
+		double r = ring[beginning];
 		beginning++;
 		if (beginning == size) {
 			beginning = 0;
@@ -49,7 +49,7 @@ bool Ring::push(double d) {
 		return false;
 	} else {
 		mayBeEmpty = false;
-		lut[nextIndex] = d;
+		ring[nextIndex] = d;
 		nextIndex++;
 		if (nextIndex == size) {
 			nextIndex = 0;
