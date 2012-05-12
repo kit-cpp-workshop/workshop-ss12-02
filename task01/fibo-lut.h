@@ -1,0 +1,31 @@
+/*
+ * fibo-lut.h
+ *
+ *  Created on: 12.05.2012
+ *      Author: markus
+ */
+
+#ifndef FIBO_LUT_H_
+#define FIBO_LUT_H_
+
+namespace task01 {
+
+    class FiboLUT {
+
+    public:
+        FiboLUT(const unsigned int tableSize);
+        ~FiboLUT();
+
+        unsigned long long get(const unsigned int number);
+
+    private:
+        static const unsigned int spacingScale = 64;
+
+        const unsigned int tableSize;
+        unsigned int lastValidBase;
+        unsigned long long (* const table)[2];
+    };
+
+}
+
+#endif /* FIBO_LUT_H_ */
