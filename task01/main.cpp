@@ -21,7 +21,7 @@ int main() {
     unsigned int i;
 
     // Easy case: first two fibos
-    for (i = 0; i < 2 && i < 2; i++) {
+    for (i = 0; i < 2; i++) {
         compare(i, lastFibos[i], fibo->get(i));
     }
 
