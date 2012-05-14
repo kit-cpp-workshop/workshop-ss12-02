@@ -13,7 +13,7 @@ namespace task01 {
     class FiboLUT {
 
     public:
-        FiboLUT(const unsigned int tableSize);
+        FiboLUT(const unsigned int maxFiboOrder);
         ~FiboLUT();
 
         unsigned long long get(const unsigned int number);
