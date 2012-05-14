@@ -5,6 +5,7 @@
  *      Author: markus
  */
 
+#include <algorithm>
 #include "fifo.h"
 
 namespace task02 {
@@ -49,16 +50,15 @@ namespace task02 {
         count = 0;
     }
 
-    double* FiFo::getAll() {
-        double *result = new double[count];
-
+    size_t FiFo::getDataCopy(double *(&buffer), const size_t count) {
         size_t read = readPos;
-        for (size_t i = 0; i < count; i++) {
-            result[i] = data[read++];
+
+        for (size_t i = 0; i < std::min(count, this->count); i++) {
+            buffer[i] = data[read++];
             read %= size;
         }
 
-        return result;
+        return this->count;
     }
 
     size_t FiFo::getSize() {

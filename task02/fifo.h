@@ -22,7 +22,7 @@ namespace task02 {
         bool pop(double &d);
         void clear();
 
-        double* getAll();
+        size_t getDataCopy(double *(&buffer), const size_t count);
 
         size_t getSize();
         size_t getCount();
