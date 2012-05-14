@@ -26,7 +26,7 @@ namespace task02 {
 
         size_t getSize();
         size_t getCount();
-        size_t getFree();
+        size_t getRemaining();
     protected:
         const size_t size;
         size_t count;

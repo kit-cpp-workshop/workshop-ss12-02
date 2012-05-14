@@ -22,7 +22,7 @@ namespace task02 {
     }
 
     bool FiFo::push(const double &d) {
-        bool result = (getFree() > 0);
+        bool result = (getRemaining() > 0);
 
         if (result) {
             data[(readPos + count++) % size] = d;
@@ -69,7 +69,7 @@ namespace task02 {
         return count;
     }
 
-    size_t FiFo::getFree() {
+    size_t FiFo::getRemaining() {
         return size - count;
     }
 
