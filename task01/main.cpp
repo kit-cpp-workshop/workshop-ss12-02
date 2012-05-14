@@ -34,6 +34,8 @@ int main() {
         compare(i, newFibo, fibo->get(i));
     }
 
+    delete fibo;
+
     std::cout << "All done" << std::endl;
 
     return 0;
