@@ -8,12 +8,14 @@
 #include <algorithm>
 #include "fibo-lut.h"
 
+#define FIBO_BASE_SPACING 64
+
 namespace task01 {
 
     static void fiboCalculate(unsigned long long (&lastFibos)[2], unsigned int first, unsigned int count);
 
     FiboLUT::FiboLUT(const unsigned int maxFiboOrder) :
-        tableSize(std::max(maxFiboOrder / spacingScale, (unsigned int) 1)),
+        tableSize(std::max(maxFiboOrder / FIBO_BASE_SPACING, (unsigned int) 1)),
         lastValidBase(0),
         table(new unsigned long long[tableSize][2]) {
 
@@ -28,7 +30,7 @@ namespace task01 {
     }
 
     unsigned long long FiboLUT::get(const unsigned int number) {
-        const unsigned int requestedBase = number / spacingScale;
+        const unsigned int requestedBase = number / FIBO_BASE_SPACING;
         const unsigned int availableBase = std::min(requestedBase, lastValidBase);
 
         // setup base fibos
@@ -40,7 +42,7 @@ namespace task01 {
         // extend base if required
         unsigned int base;
         for (base = availableBase + 1; base < std::min(tableSize, requestedBase + 1); base++) {
-            fiboCalculate(lastFibos, base * spacingScale + 2, spacingScale);
+            fiboCalculate(lastFibos, base * FIBO_BASE_SPACING + 2, FIBO_BASE_SPACING);
 
             table[base][0] = lastFibos[0];
             table[base][1] = lastFibos[1];
@@ -48,8 +50,8 @@ namespace task01 {
         lastValidBase = --base; // undo last for-loop-increment
 
         // calculate fibos from base to number
-        if (base * spacingScale + 1 < number) {
-            fiboCalculate(lastFibos, base * spacingScale + 2, number - base * spacingScale - 1);
+        if (base * FIBO_BASE_SPACING + 1 < number) {
+            fiboCalculate(lastFibos, base * FIBO_BASE_SPACING + 2, number - base * FIBO_BASE_SPACING - 1);
         }
 
         return lastFibos[number & 0x1];

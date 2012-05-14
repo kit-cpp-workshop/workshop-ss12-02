@@ -19,8 +19,6 @@ namespace task01 {
         unsigned long long get(const unsigned int number);
 
     private:
-        static const unsigned int spacingScale = 64;
-
         const unsigned int tableSize;
         unsigned int lastValidBase;
         unsigned long long (* const table)[2];
