@@ -45,7 +45,7 @@ namespace task01 {
             table[base][0] = lastFibos[0];
             table[base][1] = lastFibos[1];
         }
-        lastValidBase = --base;
+        lastValidBase = --base; // undo last for-loop-increment
 
         // calculate fibos from base to number
         if (base * spacingScale + 1 < number) {
