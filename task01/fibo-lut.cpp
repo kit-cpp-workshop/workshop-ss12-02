@@ -13,7 +13,7 @@ namespace task01 {
     static void fiboCalculate(unsigned long long (&lastFibos)[2], unsigned int first, unsigned int count);
 
     FiboLUT::FiboLUT(const unsigned int tableSize) :
-        tableSize(std::max(tableSize / spacingScale, (unsigned int) 1) * 2),
+        tableSize(std::max(tableSize / spacingScale, (unsigned int) 1)),
         lastValidBase(0),
         table(new unsigned long long[tableSize][2]) {
 
