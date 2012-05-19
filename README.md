@@ -8,9 +8,14 @@ Der zweite Workshoptermin wird sich auch noch den Grundlagen widmen: »Dinge« u
 
 Die Vortragsfolien stehen als [PDF](https://github.com/downloads/kit-cpp-workshop/workshop-ss12-02/slides.pdf) zum Download bereit. Außerdem liegt der LaTeX-Quellcode zu den Folien im Ordner `slides`.
 
-###Screencast
+### Screencast
 
-Eine (vorläufige) Aufzeichnung des Vortrags steht zum [Download](http://ubuntuone.com/3jd4VvjcWsOzSFA3O5zMz0) bereit. Durch die Verwendung eines anderen Mikrofons ist der Klang besser, dafür sind Fragen/Anmerkungen der Zuhörer (fast) nicht zu verstehen. Die Endfassung des Vortrags wird daher mit Untertiteln versehen.
+Eine Aufzeichnung des Vortrags steht zum [Download](http://ubuntuone.com/3jd4VvjcWsOzSFA3O5zMz0) bereit. Durch die Verwendung eines anderen Mikrofons ist der Klang besser, dafür sind Fragen/Anmerkungen der Zuhörer (fast) nicht zu verstehen. Der Screencast wurde daher mit Untertiteln versehen.
+
+ - ab 00:00 Intro und Vorgeplänkel "Was ist C++"
+ - ab 02:10 "Dinge" im Speicher, Referenzen, Pointer und Arrays
+ - ab 23:35 Stack und Heap, dynamische Speicherverwaltung
+ - ab 35:10 Objektorientierung in C++
 
 ## Aufgaben
 
