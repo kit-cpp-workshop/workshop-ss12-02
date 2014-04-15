@@ -10,7 +10,7 @@ Die Vortragsfolien stehen als [PDF](kit-cpp-workshop.github.com/raw/downloads/wo
 
 ### Screencast
 
-Eine Aufzeichnung des Vortrags steht zum [Download](http://ubuntuone.com/3jd4VvjcWsOzSFA3O5zMz0) bereit. Durch die Verwendung eines anderen Mikrofons ist der Klang besser, dafür sind Fragen/Anmerkungen der Zuhörer (fast) nicht zu verstehen. Der Screencast wurde daher mit Untertiteln versehen.
+Eine Aufzeichnung des Vortrags steht zum [Download](https://drive.google.com/file/d/0B18AwdjM48imeFVxNlpuRG03Znc/edit?usp=sharing) bereit. Durch die Verwendung eines anderen Mikrofons ist der Klang besser, dafür sind Fragen/Anmerkungen der Zuhörer (fast) nicht zu verstehen. Der Screencast wurde daher mit Untertiteln versehen.
 
  - ab 00:00 Intro und Vorgeplänkel "Was ist C++"
  - ab 02:10 "Dinge" im Speicher, Referenzen, Pointer und Arrays
